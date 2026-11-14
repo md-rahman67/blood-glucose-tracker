@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import DeleteButton from './DeleteButton';
 import Form from './Form';
 
 function App() {
@@ -26,8 +27,18 @@ function App() {
         <ul>
           {data.length > 0 ? (
             data.map((reading) => (
-              <li key={reading.id}>
+              <li key={reading.id} style={{ marginBottom: '10px' }}>
                 Date: {reading.date}, Slot: {reading.slot}, Value: {reading.value}
+                &nbsp;&nbsp;
+                <button>
+                  View Details
+                </button>
+                &nbsp;&nbsp;
+                <DeleteButton readingId={reading.id} setData={setData} />
+                &nbsp;&nbsp;
+                <button>
+                  edit
+                </button>
               </li>
             ))
           ) : (

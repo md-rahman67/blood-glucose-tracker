@@ -30,6 +30,18 @@ app.post("/readings", (req, res) => {
   res.status(201).send(newReading);
 });
 
+app.delete("/readings/:id", (req, res) => {
+    const readingsId = parseInt(req.params.id);
+    const index = readings.findIndex((reading) => reading.id === readingsId)
+
+    if(index !== -1) {
+        readings.splice(index, 1);
+        res.status(200).send({message: "reading deleted successfully"});
+    } else {
+        res.status(404).send({message: "reading not found"});
+    }
+})
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });     
