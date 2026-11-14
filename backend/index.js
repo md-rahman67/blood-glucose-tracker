@@ -42,6 +42,17 @@ app.delete("/readings/:id", (req, res) => {
     }
 })
 
+app.get("/readings/:id", (req, res) => {
+    const readingsId = parseInt(req.params.id);
+    const single = readings.find((r) => r.id === readingsId);
+
+    if (single) {
+        res.status(200).json(single);
+    } else {
+        res.status(404).json({ message: "Reading not found" });
+    }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });     

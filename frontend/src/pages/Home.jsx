@@ -31,13 +31,19 @@ export default function Home() {
                         data.map((reading) => (
                             <li key={reading.id} style={{ marginBottom: '10px' }}>
                                 Date: {reading.date}, Slot: {reading.slot}, Value: {reading.value}
+
                                 &nbsp;&nbsp;
-                                <Link to="/view">
+
+                                <Link to="/view" state={{ readingId: reading.id, data: data }}>
                                     <button>View</button>
                                 </Link>
+
                                 &nbsp;&nbsp;
+
                                 <DeleteButton readingId={reading.id} setData={setData} />
+
                                 &nbsp;&nbsp;
+
                                 {/* <ViewButton /> */}
                             </li>
                         ))
