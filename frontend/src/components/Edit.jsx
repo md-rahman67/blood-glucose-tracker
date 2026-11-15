@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import {
     Box,
@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 
 export default function EditReading() {
+    const navigate = useNavigate();
     const location = useLocation();
     const { readingId, data } = location.state;
 
@@ -53,6 +54,7 @@ export default function EditReading() {
 
             console.log('Updated successfully:', result);
             alert('Reading updated successfully!');
+            navigate("/");
 
         } catch (error) {
             console.error('Error deleting reading:', error);

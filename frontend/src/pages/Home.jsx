@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import DeleteButton from '../components/DeleteButton';
-import Form from '../components/Form';
 import { Link } from 'react-router-dom';
 
 import '@fontsource/roboto/300.css';
@@ -10,8 +9,7 @@ import '@fontsource/roboto/700.css';
 
 
 
-export default function Home() {
-    const [data, setData] = useState({});
+export default function Home({ data, setData }) {
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,7 +27,9 @@ export default function Home() {
 
     return (
         <>
-            <Form setData={setData} />
+            <Link to="/add">
+                <button>Add Readings</button>
+            </Link>
             <div className="App">
                 <h1>Blood Glucose Readings</h1>
                 <ul>
@@ -40,7 +40,7 @@ export default function Home() {
 
                                 &nbsp;&nbsp;
 
-                                <Link to="/view" state={{ readingId: reading.id, data: data }}>
+                                <Link to="/view" state={{ readingId: reading.id }}>
                                     <button>View</button>
                                 </Link>
 
