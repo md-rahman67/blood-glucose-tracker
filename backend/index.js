@@ -156,11 +156,16 @@ app.post("/signup", async (req, res) => {
       message: "Signup successful"
     });
 
-    // req.login(kaboom, (err) => {
-    //   if (err) {
-    //     return next(err);
-    //   }
-    // })
+    req.login(kaboom, (err) => {
+      if (err) {
+        return res.status(500).json({ message: err.message });
+      }
+
+      return res.status(201).json({
+        message: "Signup successful",
+        user: req.user
+      });
+    })
 
   } catch (e) {
     console.log(e);

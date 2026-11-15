@@ -1,7 +1,10 @@
 import { Box, TextField, Button, Typography, Paper } from "@mui/material";
 import { useState } from "react";
+import './Signup.css';
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         username: '',
@@ -37,6 +40,7 @@ export default function Signup() {
             }
 
             console.log(result);
+            navigate("/");
 
             setFormData({
                 username: '',
@@ -51,6 +55,7 @@ export default function Signup() {
 
     return (
         <Box
+            className="auth-page auth-page--signup"
             sx={{
                 minHeight: "100vh",
                 display: "flex",
@@ -58,12 +63,13 @@ export default function Signup() {
                 alignItems: "center"
             }}
         >
-            <Paper sx={{ p: 4, width: 400 }}>
-                <Typography variant="h5" mb={3} sx={{ textAlign: "center" }}>
+            <Paper className="auth-paper" sx={{ p: 4, width: 400 }}>
+                <Typography className="auth-title" variant="h5" mb={3} sx={{ textAlign: "center" }}>
                     Sign Up
                 </Typography>
 
                 <Box
+                    className="auth-form"
                     component="form"
                     onSubmit={handleSignUpSubmit}
                     sx={{

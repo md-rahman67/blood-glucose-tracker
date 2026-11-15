@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import './Logout.css';
 
 export default function Logout({ setCurrUser }) {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ export default function Logout({ setCurrUser }) {
             if (response.ok) {
                 alert("User Logged out");
                 setCurrUser(null);
-                navigate("/login");
+                navigate("/");
             }
         } catch (error) {
             console.error("Error: Logout failed", error);
@@ -22,7 +23,7 @@ export default function Logout({ setCurrUser }) {
     }
     return (
         <>
-            <button onClick={handleLogout}>Logout</button>
+            <button className="logout-button" onClick={handleLogout}>Logout</button>
         </>
     )
 }

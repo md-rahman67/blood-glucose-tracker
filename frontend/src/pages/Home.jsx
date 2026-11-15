@@ -31,27 +31,27 @@ export default function Home({ data, setData, currUser, setCurrUser }) {
         <>
 
 
-            {currUser ? (
+            <nav className="home-toolbar">
+                {currUser ? (
+                    <>
+                        <Link className="home-add-link" to="/add">
+                            <button className="home-add-button">Add Readings</button>
+                        </Link>
 
-                <>
-                    <Link className="home-add-link" to="/add">
-                        <button className="home-add-button">Add Readings</button>
-                    </Link>
+                        <Logout setCurrUser={setCurrUser} />
+                    </>
+                ) : (
+                    <>
+                        <Link className="home-add-link" to="/login">
+                            <button className="home-add-button">login</button>
+                        </Link>
 
-                    <Logout setCurrUser={setCurrUser} />
-                </>
-
-            ) : (
-                <>
-                    <Link className="home-add-link" to="/login">
-                        <button className="home-add-button">login</button>
-                    </Link>
-
-                    <Link className="home-add-link" to="/signup">
-                        <button className="home-add-button">signup</button>
-                    </Link>
-                </>
-            )}
+                        <Link className="home-add-link" to="/signup">
+                            <button className="home-add-button">signup</button>
+                        </Link>
+                    </>
+                )}
+            </nav>
 
 
             <div className="App home-page">

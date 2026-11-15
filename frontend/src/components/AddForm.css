@@ -24,6 +24,11 @@
     letter-spacing: -0.025em;
 }
 
+.reading-form .MuiFormControl-root {
+    width: 100%;
+    margin: 0;
+}
+
 .reading-form .MuiOutlinedInput-root {
     border-radius: 8px;
     background: #fff;
