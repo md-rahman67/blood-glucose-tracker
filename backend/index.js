@@ -39,16 +39,16 @@ passport.serializeUser(User.serializeUser()); //* track session / save s_id
 passport.deserializeUser(User.deserializeUser()); //* session finished / delete s_id
 
 //* -API ENDPOINTS-----------------------------------------------------------------------------
+
 //* display all readings
 app.get("/readings", async (req, res) => {
-  const reading = await Reading.find();
+  const reading = await Reading.find().populate("recordedBy");
   res.send(reading);
 });
 
 //* Add new readings
 app.post("/readings", async (req, res) => {
   try {
-    console.log("Logged in user:", req.user);
     const { date, slot, value } = req.body;
 
     const newReading = await Reading.create({
@@ -107,10 +107,8 @@ app.get("/readings/:id", async (req, res) => {
 //* edit readings
 app.put("/readings/:id", async (req, res) => {
   try {
-    console.log("PUT route hit!");
     const readingsId = req.params.id;
     const { date, slot, value } = req.body;
-    console.log("ID received:", readingsId);
     const updated = await Reading.findByIdAndUpdate(
       readingsId,
       {
@@ -153,7 +151,6 @@ app.post("/signup", async (req, res) => {
     });
     let kaboom = await User.register(newUser, password);
     console.log(kaboom);
-    console.log(req.user._id);
 
     res.status(201).json({
       message: "Signup successful"

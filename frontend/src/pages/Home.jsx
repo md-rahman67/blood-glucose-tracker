@@ -46,25 +46,37 @@ export default function Home({ data, setData }) {
                     {data.length > 0 ? (
                         data.map((reading) => (
                             <li className="reading-row" key={reading._id}>
+
+                                <span className="reading-field">
+                                    <span className="reading-label">username</span>
+                                    <span>{reading.recordedBy.username}</span>
+                                </span>
+
                                 <span className="reading-field">
                                     <span className="reading-label">Date</span>
                                     <span>{reading.date.split("T")[0]}</span>
                                 </span>
+
                                 <span className="reading-field">
                                     <span className="reading-label">Time slot</span>
                                     <span>{reading.slot}</span>
                                 </span>
+
                                 <span className="reading-field">
                                     <span className="reading-label">Glucose</span>
                                     <span>{reading.value} mg/dL</span>
                                 </span>
+
                                 <span className="reading-actions">
+
                                     <Link to="/view" state={{ readingId: reading._id }}>
                                         <button className="reading-action">View</button>
                                     </Link>
+
                                     <Link to="/edit" state={{ readingId: reading._id, data: data }}>
                                         <button className="reading-action reading-action--edit">Edit</button>
                                     </Link>
+
                                 </span>
                             </li>
                         ))
