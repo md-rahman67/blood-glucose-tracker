@@ -7,6 +7,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import Logout from '../components/Logout';
 
 
 
@@ -39,6 +40,9 @@ export default function Home({ data, setData }) {
             <Link className="home-add-link" to="/signup">
                 <button className="home-add-button">signup</button>
             </Link>
+
+            {/* <Logout /> */}
+
             <div className="App home-page">
                 <h1>Blood Glucose Readings</h1>
 

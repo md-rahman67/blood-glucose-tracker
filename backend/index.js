@@ -171,6 +171,23 @@ app.post("/login", passport.authenticate("local"), (req, res) => {
   res.json({ message: "Login Successful" });
 })
 
+app.post("/logout", (req, res) => {
+  req.logout((err) => {
+
+    if (err) {
+      return res.status(500).json({ message: err.message });
+    }
+
+    res.status(200).json({ message: "Logout successful" });
+  })
+})
+
+app.get("/curr-user", (req, res) => {
+  res.json({
+    user: req.user || null,
+  });
+})
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });     
