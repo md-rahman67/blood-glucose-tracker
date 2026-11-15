@@ -6,6 +6,7 @@ import AddForm from "./components/AddForm";
 import { useState } from 'react';
 import './App.css';
 import Signup from './pages/Signup';
+import Login from './pages/Login';
 
 function App() {
   const [data, setData] = useState({});
@@ -16,6 +17,7 @@ function App() {
       <Route path="/view" element={<ViewButton setData={setData} />} />
       <Route path="/edit" element={<EditButton />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 }

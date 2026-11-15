@@ -48,9 +48,11 @@ app.get("/readings", async (req, res) => {
 //* Add new readings
 app.post("/readings", async (req, res) => {
   try {
+    console.log("Logged in user:", req.user);
     const { date, slot, value } = req.body;
 
     const newReading = await Reading.create({
+      recordedBy: req.user._id,
       date,
       slot,
       value: Number(value)
@@ -151,6 +153,7 @@ app.post("/signup", async (req, res) => {
     });
     let kaboom = await User.register(newUser, password);
     console.log(kaboom);
+    console.log(req.user._id);
 
     res.status(201).json({
       message: "Signup successful"
@@ -165,6 +168,10 @@ app.post("/signup", async (req, res) => {
   } catch (e) {
     console.log(e);
   }
+})
+
+app.post("/login", passport.authenticate("local"), (req, res) => {
+  res.json({ message: "Login Successful" });
 })
 
 app.listen(PORT, () => {
