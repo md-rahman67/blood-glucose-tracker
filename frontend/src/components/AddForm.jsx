@@ -42,15 +42,17 @@ export default function AddForm({ setData }) {
 
             const result = await response.json();
 
-            setData((prevData) => [...prevData, result]);
-            alert('Reading addedd successfully!');
-            setFormData({
-                date: '',
-                slot: '',
-                value: ''
-            });
+            if (response.ok) {
+                setData((prevData) => [...prevData, result]);
+                alert('Reading addedd successfully!');
+                setFormData({
+                    date: '',
+                    slot: '',
+                    value: ''
+                });
 
-            navigate("/");
+                navigate("/");
+            }
 
 
         } catch (error) {
