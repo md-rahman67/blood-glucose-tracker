@@ -1,13 +1,19 @@
-const mongoose = require("mongoose");
-const passportLocalMongoose = require("passport-local-mongoose");
+import mongoose from "mongoose";
+import passportLocalMongoose from "passport-local-mongoose";
 
-const userSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
     email: {
         type: String,
         required: true
     }
 });
 
-userSchema.plugin(passportLocalMongoose);
+const plugin = passportLocalMongoose.default || passportLocalMongoose;
 
-module.exports = mongoose.model("User", userSchema);
+userSchema.plugin(plugin);
+
+const User = mongoose.model("User", userSchema);
+
+export default User;

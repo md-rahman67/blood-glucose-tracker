@@ -4,6 +4,7 @@ import Reading from "./models/readings.model.js";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import User from "./models/user.model.js";
+import session from "express-session";
 const app = express();
 const PORT = 3000;
 
@@ -18,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //* -SESSION INFO---------------------------------------------------------
 const sessionOptions = {
-  secret: process.env.SECRET,
+  secret: "secretsdjciv8vnvri",
   resave: false,
   saveUninitialized: true,
   cookie: {

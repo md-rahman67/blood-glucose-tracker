@@ -31,6 +31,10 @@ export default function Home({ data, setData }) {
             <Link className="home-add-link" to="/add">
                 <button className="home-add-button">Add Readings</button>
             </Link>
+
+            <Link className="home-add-link" to="/login">
+                <button className="home-add-button">login</button>
+            </Link>
             <div className="App home-page">
                 <h1>Blood Glucose Readings</h1>
 
