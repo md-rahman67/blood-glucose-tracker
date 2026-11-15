@@ -37,17 +37,13 @@ export default function Home({ data, setData }) {
                     {data.length > 0 ? (
                         data.map((reading) => (
                             <li className="reading-card" key={reading._id} style={{ marginBottom: '10px' }}>
-                                Date: {reading.date}, Slot: {reading.slot}, Value: {reading.value}
+                                Date: {reading.date.split("T")[0]}, Slot: {reading.slot}, Value: {reading.value}
 
                                 &nbsp;&nbsp;
 
                                 <Link to="/view" state={{ readingId: reading._id }}>
                                     <button className="reading-action">View</button>
                                 </Link>
-
-                                &nbsp;&nbsp;
-
-                                {/* <DeleteButton readingId={reading._id} setData={setData} /> */}
 
                                 &nbsp;&nbsp;
 

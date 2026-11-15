@@ -41,7 +41,7 @@ export default function ViewButton({ setData }) {
             {
                 view.date ? (
                     <>
-                        <p>Date: {view.date}</p>
+                        <p>Date: {view.date.split("T")[0]}</p>
                         <p>Slot: {view.slot}</p>
                         <p>Value: {view.value} mg/dL</p>
                         <DeleteButton readingId={readingId} setData={setData} />
