@@ -1,0 +1,40 @@
+.reading-detail-page {
+    width: min(100% - 40px, 620px);
+    margin: clamp(36px, 9vh, 90px) auto;
+    padding: clamp(26px, 6vw, 48px);
+    border: 1px solid rgb(198 185 159 / 48%);
+    border-radius: 26px;
+    background: rgb(255 255 255 / 82%);
+    box-shadow: 0 20px 55px rgb(52 56 49 / 8%);
+}
+
+.reading-detail-page h1 {
+    margin: 0 0 24px;
+    color: var(--forest-sage);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 5vw, 2.6rem);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+}
+
+.detail-expand-button {
+    margin-bottom: 14px;
+}
+
+.reading-detail-page p {
+    margin: 12px 0;
+    color: var(--muted-stone);
+    line-height: 1.65;
+}
+
+.reading-detail-page .reading-id {
+    overflow-wrap: anywhere;
+    color: #938e80;
+    font-size: 0.82rem;
+}
+
+.placeholder-view-title {
+    color: var(--forest-sage);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+}

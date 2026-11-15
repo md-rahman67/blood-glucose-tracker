@@ -6,6 +6,7 @@ import '@fontsource/roboto/700.css';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import DeleteButton from '../components/DeleteButton';
+import './ViewButton.css';
 
 export default function ViewButton({ setData }) {
 
@@ -30,12 +31,12 @@ export default function ViewButton({ setData }) {
     };
 
     return (
-        <div>
+        <div className="reading-detail-page">
             <h1>View Details</h1>
 
-            <button onClick={handleView}>Expand</button>
+            <button className="detail-expand-button" onClick={handleView}>Expand</button>
 
-            <p>Reading ID: {readingId}</p>
+            <p className="reading-id">Reading ID: {readingId}</p>
 
             {
                 view.date ? (

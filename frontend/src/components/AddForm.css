@@ -1,0 +1,70 @@
+.reading-form-page {
+    min-height: 100vh;
+    padding: 1px 20px 48px;
+    align-items: flex-start;
+}
+
+.reading-form-paper {
+    width: min(100%, 460px) !important;
+    margin-top: clamp(24px, 7vh, 72px);
+    padding: clamp(26px, 5vw, 42px) !important;
+    border: 1px solid rgb(198 185 159 / 52%);
+    border-radius: 24px !important;
+    background: var(--pure-white) !important;
+    box-shadow: 0 22px 60px rgb(52 56 49 / 9%) !important;
+}
+
+.reading-form-title.MuiTypography-root {
+    margin-bottom: 26px;
+    color: var(--forest-sage);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.85rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+.reading-form .MuiOutlinedInput-root {
+    border-radius: 12px;
+    background: #fff;
+}
+
+.reading-form .MuiOutlinedInput-notchedOutline {
+    border-color: #dcd9cf;
+}
+
+.reading-form .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: var(--soft-sage);
+}
+
+.reading-form .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: var(--soft-sage);
+    border-width: 1px;
+}
+
+.reading-form .MuiInputLabel-root.Mui-focused {
+    color: var(--forest-sage);
+}
+
+.reading-form .MuiButton-root {
+    min-height: 48px;
+    margin-top: 6px;
+    border-radius: 999px;
+    background: var(--forest-sage);
+    box-shadow: none;
+    text-transform: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.reading-form .MuiButton-root:hover {
+    background: #293b30;
+    box-shadow: 0 6px 16px rgb(52 72 59 / 16%);
+}
+
+@media (max-width: 480px) {
+    .reading-form-page {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+}

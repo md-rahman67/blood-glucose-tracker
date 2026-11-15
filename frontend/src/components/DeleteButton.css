@@ -1,0 +1,9 @@
+.delete-reading-button {
+    margin-top: 12px;
+    color: #fff;
+    background: #746f5f;
+}
+
+.delete-reading-button:hover {
+    background: #5c594d;
+}

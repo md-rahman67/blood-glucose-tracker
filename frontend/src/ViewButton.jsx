@@ -1,7 +1,9 @@
+import './ViewButton.css';
+
 export default function ViewButton() {
     return (
         <>
-            <h1>View Changes</h1>
+            <h1 className="placeholder-view-title">View Changes</h1>
         </>
     )
 }

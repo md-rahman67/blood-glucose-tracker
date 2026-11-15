@@ -1,3 +1,40 @@
-body {
+:root {
     font-family: 'Roboto', sans-serif;
+    color: #343831;
+    background: #f5f2e9;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    --forest-sage: #34483b;
+    --soft-sage: #84947b;
+    --mist-green: #d8ddcd;
+    --warm-ivory: #f5f2e9;
+    --champagne: #c6b99f;
+    --muted-stone: #746f5f;
+    --soft-charcoal: #343831;
+    --pure-white: #ffffff;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background: var(--warm-ivory);
+}
+
+button {
+    font: inherit;
+}
+
+::selection {
+    color: var(--forest-sage);
+    background: var(--mist-green);
 }

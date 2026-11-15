@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 // import DeleteButton from '../components/DeleteButton';
 import { Link } from 'react-router-dom';
+import './Home.css';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -27,21 +28,21 @@ export default function Home({ data, setData }) {
 
     return (
         <>
-            <Link to="/add">
-                <button>Add Readings</button>
+            <Link className="home-add-link" to="/add">
+                <button className="home-add-button">Add Readings</button>
             </Link>
-            <div className="App">
+            <div className="App home-page">
                 <h1>Blood Glucose Readings</h1>
-                <ul>
+                <ul className="reading-list">
                     {data.length > 0 ? (
                         data.map((reading) => (
-                            <li key={reading._id} style={{ marginBottom: '10px' }}>
+                            <li className="reading-card" key={reading._id} style={{ marginBottom: '10px' }}>
                                 Date: {reading.date}, Slot: {reading.slot}, Value: {reading.value}
 
                                 &nbsp;&nbsp;
 
                                 <Link to="/view" state={{ readingId: reading._id }}>
-                                    <button>View</button>
+                                    <button className="reading-action">View</button>
                                 </Link>
 
                                 &nbsp;&nbsp;
@@ -51,7 +52,7 @@ export default function Home({ data, setData }) {
                                 &nbsp;&nbsp;
 
                                 <Link to="/edit" state={{ readingId: reading._id, data: data }}>
-                                    <button>Edit</button>
+                                    <button className="reading-action reading-action--edit">Edit</button>
                                 </Link>
                             </li>
                         ))

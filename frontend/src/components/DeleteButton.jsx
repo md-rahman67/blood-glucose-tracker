@@ -4,6 +4,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 import { useNavigate } from 'react-router-dom';
+import './DeleteButton.css';
 
 export default function DeleteButton({ readingId, setData }) {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function DeleteButton({ readingId, setData }) {
     };
 
     return (
-        <button onClick={handleDelete}>
+        <button className="delete-reading-button" onClick={handleDelete}>
             Delete
         </button>
     );

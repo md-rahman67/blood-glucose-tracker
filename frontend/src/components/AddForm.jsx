@@ -9,6 +9,7 @@ import {
     MenuItem,
     Paper
 } from '@mui/material';
+import './AddForm.css';
 
 export default function AddForm({ setData }) {
     const navigate = useNavigate();
@@ -59,19 +60,21 @@ export default function AddForm({ setData }) {
 
     return (
         <Box
+            className="reading-form-page reading-form-page--add"
             sx={{
                 display: 'flex',
                 justifyContent: 'center',
                 mt: 5
             }}
         >
-            <Paper elevation={3} sx={{ p: 4, width: 400 }}>
+            <Paper className="reading-form-paper" elevation={3} sx={{ p: 4, width: 400 }}>
 
-                <Typography variant="h5" mb={3}>
+                <Typography className="reading-form-title" variant="h5" mb={3}>
                     Add Blood Glucose Reading
                 </Typography>
 
                 <Box
+                    className="reading-form"
                     component="form"
                     onSubmit={handleSubmit}
                     sx={{

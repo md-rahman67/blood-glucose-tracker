@@ -8,6 +8,7 @@ import {
     MenuItem,
     Paper
 } from '@mui/material';
+import './Edit.css';
 
 export default function EditReading() {
     const navigate = useNavigate();
@@ -63,19 +64,21 @@ export default function EditReading() {
 
     return (
         <Box
+            className="reading-form-page reading-form-page--edit"
             sx={{
                 display: 'flex',
                 justifyContent: 'center',
                 mt: 5
             }}
         >
-            <Paper elevation={3} sx={{ p: 4, width: 400 }}>
+            <Paper className="reading-form-paper" elevation={3} sx={{ p: 4, width: 400 }}>
 
-                <Typography variant="h5" mb={3}>
+                <Typography className="reading-form-title" variant="h5" mb={3}>
                     Edit Blood Glucose Reading
                 </Typography>
 
                 <Box
+                    className="reading-form"
                     component="form"
                     onSubmit={handleSubmit}
                     sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}

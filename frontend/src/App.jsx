@@ -4,6 +4,7 @@ import ViewButton from './pages/ViewButton';
 import EditButton from './components/Edit';
 import AddForm from "./components/AddForm";
 import { useState } from 'react';
+import './App.css';
 
 function App() {
   const [data, setData] = useState({});
