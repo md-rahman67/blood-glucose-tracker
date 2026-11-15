@@ -26,6 +26,11 @@ const readingSchema = new mongoose.Schema({
             validator: Number.isInteger,
             message: 'Value must be a whole number'
         }
+    },
+
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
     }
 });
 

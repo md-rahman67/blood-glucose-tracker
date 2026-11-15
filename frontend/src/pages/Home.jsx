@@ -33,6 +33,7 @@ export default function Home({ data, setData }) {
             </Link>
             <div className="App home-page">
                 <h1>Blood Glucose Readings</h1>
+
                 <ul className="reading-list">
                     {data.length > 0 ? (
                         data.map((reading) => (
@@ -50,12 +51,12 @@ export default function Home({ data, setData }) {
                                     <span>{reading.value} mg/dL</span>
                                 </span>
                                 <span className="reading-actions">
-                                <Link to="/view" state={{ readingId: reading._id }}>
-                                    <button className="reading-action">View</button>
-                                </Link>
-                                <Link to="/edit" state={{ readingId: reading._id, data: data }}>
-                                    <button className="reading-action reading-action--edit">Edit</button>
-                                </Link>
+                                    <Link to="/view" state={{ readingId: reading._id }}>
+                                        <button className="reading-action">View</button>
+                                    </Link>
+                                    <Link to="/edit" state={{ readingId: reading._id, data: data }}>
+                                        <button className="reading-action reading-action--edit">Edit</button>
+                                    </Link>
                                 </span>
                             </li>
                         ))
