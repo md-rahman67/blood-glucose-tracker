@@ -3,8 +3,12 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+import { useNavigate } from 'react-router-dom';
+
 export default function DeleteButton({ readingId, setData }) {
-    const handleDelete = async () => {
+    const navigate = useNavigate();
+    const handleDelete = async (e) => {
+        e.preventDefault();
         try {
             const response = await fetch(`/api/readings/${readingId}`, {
                 method: 'DELETE',
@@ -13,6 +17,7 @@ export default function DeleteButton({ readingId, setData }) {
             if (response.ok) {
                 setData((prevData) => prevData.filter((reading) => reading.id !== readingId));
             }
+            navigate("/");
         } catch (error) {
             console.error('Error deleting reading:', error);
         }

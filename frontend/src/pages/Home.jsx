@@ -35,22 +35,22 @@ export default function Home({ data, setData }) {
                 <ul>
                     {data.length > 0 ? (
                         data.map((reading) => (
-                            <li key={reading.id} style={{ marginBottom: '10px' }}>
+                            <li key={reading._id} style={{ marginBottom: '10px' }}>
                                 Date: {reading.date}, Slot: {reading.slot}, Value: {reading.value}
 
                                 &nbsp;&nbsp;
 
-                                <Link to="/view" state={{ readingId: reading.id }}>
+                                <Link to="/view" state={{ readingId: reading._id }}>
                                     <button>View</button>
                                 </Link>
 
                                 &nbsp;&nbsp;
 
-                                <DeleteButton readingId={reading.id} setData={setData} />
+                                <DeleteButton readingId={reading._id} setData={setData} />
 
                                 &nbsp;&nbsp;
 
-                                <Link to="/edit" state={{ readingId: reading.id, data: data }}>
+                                <Link to="/edit" state={{ readingId: reading._id, data: data }}>
                                     <button>Edit</button>
                                 </Link>
                             </li>

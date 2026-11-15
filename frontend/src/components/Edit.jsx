@@ -14,10 +14,10 @@ export default function EditReading() {
     const location = useLocation();
     const { readingId, data } = location.state;
 
-    const single = data.find((r) => r.id === readingId);
+    const single = data.find((r) => r._id === readingId);
 
     const [formData, setFormData] = useState({
-        date: single.date,
+        date: single.date.split('T')[0],
         slot: single.slot,
         value: single.value
     });
