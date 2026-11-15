@@ -142,7 +142,7 @@ app.put("/readings/:id", async (req, res) => {
 });
 
 //* USER MODAL API ENDPOINTS ----------------------------------------------------------
-app.post("/signup", (req, res) => {
+app.post("/signup", async (req, res) => {
   try {
     let { username, email, password } = req.body;
     let newUser = new User({
@@ -151,17 +151,20 @@ app.post("/signup", (req, res) => {
     });
     let kaboom = await User.register(newUser, password);
     console.log(kaboom);
-    req.login(kaboom, (err) => {
-      if (err) {
-        return next(err);
-      }
-      req.flash("success", "Thank you for Joining");
-      res.redirect("/listings");
-    })
+
+    res.status(201).json({
+      message: "Signup successful"
+    });
+
+    // req.login(kaboom, (err) => {
+    //   if (err) {
+    //     return next(err);
+    //   }
+    // })
 
   } catch (e) {
-    req.flash("error", e.message);
-    res.redirect("/s
+    console.log(e);
+  }
 })
 
 app.listen(PORT, () => {
