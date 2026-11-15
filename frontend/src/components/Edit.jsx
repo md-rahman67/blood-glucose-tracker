@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import {
     Box,
     TextField,
@@ -14,6 +15,49 @@ export default function EditReading() {
 
     const single = data.find((r) => r.id === readingId);
 
+    const [formData, setFormData] = useState({
+        date: single.date,
+        slot: single.slot,
+        value: single.value
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value
+        }));
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch(`/api/readings/${readingId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    value: Number(formData.value)
+                })
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.message || 'Update failed');
+            }
+
+            console.log('Updated successfully:', result);
+            alert('Reading updated successfully!');
+
+        } catch (error) {
+            console.error('Error deleting reading:', error);
+        }
+    }
 
     return (
         <Box
@@ -31,7 +75,7 @@ export default function EditReading() {
 
                 <Box
                     component="form"
-                    // onSubmit={handleSubmit}
+                    onSubmit={handleSubmit}
                     sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
                 >
 
@@ -39,9 +83,13 @@ export default function EditReading() {
                         label="Date"
                         type="date"
                         name="date"
-                        value={single.date}
-                        // onChange={handleChange}
-                        InputLabelProps={{ shrink: true }}
+                        value={formData.date}
+                        onChange={handleChange}
+                        slotProps={{
+                            inputLabel: {
+                                shrink: true
+                            }
+                        }}
                         required
                     />
 
@@ -49,8 +97,8 @@ export default function EditReading() {
                         select
                         label="Time Slot"
                         name="slot"
-                        value={single.slot}
-                    // onChange={handleChange}
+                        value={formData.slot}
+                        onChange={handleChange}
                     >
                         <MenuItem value="Morning">Morning (Fasting)</MenuItem>
                         <MenuItem value="After breakfast">After breakfast</MenuItem>
@@ -62,9 +110,15 @@ export default function EditReading() {
                         label="Blood Glucose (mg/dL)"
                         type="number"
                         name="value"
-                        value={single.value}
-                        // onChange={handleChange}
-                        inputProps={{ min: 40, max: 600, step: 1 }}
+                        value={formData.value}
+                        onChange={handleChange}
+                        slotProps={{
+                            htmlInput: {
+                                min: 40,
+                                max: 600,
+                                step: 1
+                            }
+                        }}
                         required
                     />
 
