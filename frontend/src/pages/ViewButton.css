@@ -22,15 +22,49 @@
 }
 
 .reading-detail-page p {
-    margin: 12px 0;
+    margin: 0;
     color: var(--muted-stone);
     line-height: 1.65;
 }
 
 .reading-detail-page .reading-id {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin: 10px 0 20px;
     overflow-wrap: anywhere;
     color: #938e80;
     font-size: 0.82rem;
+}
+
+.reading-details {
+    display: grid;
+    gap: 12px;
+    margin: 18px 0 22px;
+}
+
+.reading-details p {
+    display: grid;
+    grid-template-columns: minmax(90px, 0.45fr) 1fr;
+    gap: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e8e5db;
+}
+
+.reading-details p span:first-child {
+    color: var(--muted-stone);
+    font-size: 0.82rem;
+}
+
+.reading-details p span:last-child {
+    color: var(--soft-charcoal);
+    overflow-wrap: anywhere;
+}
+
+.reading-detail-actions {
+    display: flex;
+    justify-content: flex-start;
 }
 
 .placeholder-view-title {

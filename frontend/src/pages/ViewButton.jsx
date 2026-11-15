@@ -36,15 +36,19 @@ export default function ViewButton({ setData }) {
 
             <button className="detail-expand-button" onClick={handleView}>Expand</button>
 
-            <p className="reading-id">Reading ID: {readingId}</p>
+            <p className="reading-id"><span>Reading ID</span><span>{readingId}</span></p>
 
             {
                 view.date ? (
                     <>
-                        <p>Date: {view.date.split("T")[0]}</p>
-                        <p>Slot: {view.slot}</p>
-                        <p>Value: {view.value} mg/dL</p>
-                        <DeleteButton readingId={readingId} setData={setData} />
+                        <div className="reading-details">
+                            <p><span>Date</span><span>{view.date.split("T")[0]}</span></p>
+                            <p><span>Time slot</span><span>{view.slot}</span></p>
+                            <p><span>Glucose</span><span>{view.value} mg/dL</span></p>
+                        </div>
+                        <div className="reading-detail-actions">
+                            <DeleteButton readingId={readingId} setData={setData} />
+                        </div>
                     </>
                 ) : (
                     <p>Expand Details</p>

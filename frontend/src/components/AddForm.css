@@ -15,7 +15,7 @@
 }
 
 .reading-form-title.MuiTypography-root {
-    margin-bottom: 26px;
+    margin-bottom: 22px;
     color: var(--forest-sage);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.85rem;
@@ -25,7 +25,7 @@
 }
 
 .reading-form .MuiOutlinedInput-root {
-    border-radius: 12px;
+    border-radius: 8px;
     background: #fff;
 }
 
@@ -48,7 +48,7 @@
 
 .reading-form .MuiButton-root {
     min-height: 48px;
-    margin-top: 6px;
+    margin-top: 2px;
     border-radius: 999px;
     background: var(--forest-sage);
     box-shadow: none;

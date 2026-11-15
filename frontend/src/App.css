@@ -12,26 +12,15 @@ button {
     font-size: 0.88rem;
     font-weight: 500;
     letter-spacing: 0.015em;
-    transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
 button:hover {
     background: #293b30;
-    box-shadow: 0 5px 14px rgb(52 72 59 / 16%);
-    transform: translateY(-1px);
+    box-shadow: 0 2px 7px rgb(52 72 59 / 12%);
 }
 
 button:focus-visible,
 a:focus-visible {
     outline: 3px solid var(--champagne);
     outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-    }
 }

@@ -36,20 +36,27 @@ export default function Home({ data, setData }) {
                 <ul className="reading-list">
                     {data.length > 0 ? (
                         data.map((reading) => (
-                            <li className="reading-card" key={reading._id} style={{ marginBottom: '10px' }}>
-                                Date: {reading.date.split("T")[0]}, Slot: {reading.slot}, Value: {reading.value}
-
-                                &nbsp;&nbsp;
-
+                            <li className="reading-row" key={reading._id}>
+                                <span className="reading-field">
+                                    <span className="reading-label">Date</span>
+                                    <span>{reading.date.split("T")[0]}</span>
+                                </span>
+                                <span className="reading-field">
+                                    <span className="reading-label">Time slot</span>
+                                    <span>{reading.slot}</span>
+                                </span>
+                                <span className="reading-field">
+                                    <span className="reading-label">Glucose</span>
+                                    <span>{reading.value} mg/dL</span>
+                                </span>
+                                <span className="reading-actions">
                                 <Link to="/view" state={{ readingId: reading._id }}>
                                     <button className="reading-action">View</button>
                                 </Link>
-
-                                &nbsp;&nbsp;
-
                                 <Link to="/edit" state={{ readingId: reading._id, data: data }}>
                                     <button className="reading-action reading-action--edit">Edit</button>
                                 </Link>
+                                </span>
                             </li>
                         ))
                     ) : (
