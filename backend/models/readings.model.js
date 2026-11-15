@@ -28,7 +28,7 @@ const readingSchema = new mongoose.Schema({
         }
     },
 
-    owner: {
+    recordedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     }

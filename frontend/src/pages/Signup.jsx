@@ -1,6 +1,7 @@
 import { Box, TextField, Button, Typography, Paper } from "@mui/material";
 
-export default function Login() {
+export default function Signup() {
+
     return (
         <Box
             sx={{
@@ -12,7 +13,7 @@ export default function Login() {
         >
             <Paper sx={{ p: 4, width: 400 }}>
                 <Typography variant="h5" mb={3} textAlign="center">
-                    Login
+                    Sign Up
                 </Typography>
 
                 <Box component="form">
@@ -48,7 +49,7 @@ export default function Login() {
                         type="submit"
                         sx={{ mt: 2 }}
                     >
-                        Login
+                        Sign Up
                     </Button>
                 </Box>
             </Paper>

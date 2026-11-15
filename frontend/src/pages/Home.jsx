@@ -32,8 +32,8 @@ export default function Home({ data, setData }) {
                 <button className="home-add-button">Add Readings</button>
             </Link>
 
-            <Link className="home-add-link" to="/login">
-                <button className="home-add-button">login</button>
+            <Link className="home-add-link" to="/signup">
+                <button className="home-add-button">signup</button>
             </Link>
             <div className="App home-page">
                 <h1>Blood Glucose Readings</h1>

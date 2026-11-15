@@ -5,7 +5,7 @@ import EditButton from './components/Edit';
 import AddForm from "./components/AddForm";
 import { useState } from 'react';
 import './App.css';
-import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 function App() {
   const [data, setData] = useState({});
@@ -15,7 +15,7 @@ function App() {
       <Route path="/add" element={<AddForm setData={setData} />} />
       <Route path="/view" element={<ViewButton setData={setData} />} />
       <Route path="/edit" element={<EditButton />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
     </Routes>
   );
 }

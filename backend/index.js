@@ -141,6 +141,29 @@ app.put("/readings/:id", async (req, res) => {
   }
 });
 
+//* USER MODAL API ENDPOINTS ----------------------------------------------------------
+app.post("/signup", (req, res) => {
+  try {
+    let { username, email, password } = req.body;
+    let newUser = new User({
+      username: username,
+      email: email
+    });
+    let kaboom = await User.register(newUser, password);
+    console.log(kaboom);
+    req.login(kaboom, (err) => {
+      if (err) {
+        return next(err);
+      }
+      req.flash("success", "Thank you for Joining");
+      res.redirect("/listings");
+    })
+
+  } catch (e) {
+    req.flash("error", e.message);
+    res.redirect("/s
+})
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });     
