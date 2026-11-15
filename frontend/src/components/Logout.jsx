@@ -1,4 +1,7 @@
-export default function Logout() {
+import { useNavigate } from "react-router-dom";
+
+export default function Logout({ setCurrUser }) {
+    const navigate = useNavigate();
 
     const handleLogout = async () => {
         try {
@@ -10,6 +13,8 @@ export default function Logout() {
 
             if (response.ok) {
                 alert("User Logged out");
+                setCurrUser(null);
+                navigate("/login");
             }
         } catch (error) {
             console.error("Error: Logout failed", error);

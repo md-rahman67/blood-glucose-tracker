@@ -2,7 +2,7 @@ import { Box, TextField, Button, Typography, Paper } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login({ setCurrUser }) {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -33,7 +33,11 @@ export default function Login() {
 
             const result = await response.json();
             console.log(result);
-            navigate("/");
+
+            if (response.ok) {
+                setCurrUser(result.user);
+                navigate("/");
+            }
 
         } catch (error) {
             console.error('Error deleting reading:', error);

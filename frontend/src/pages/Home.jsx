@@ -11,7 +11,7 @@ import Logout from '../components/Logout';
 
 
 
-export default function Home({ data, setData }) {
+export default function Home({ data, setData, currUser, setCurrUser }) {
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,19 +29,30 @@ export default function Home({ data, setData }) {
 
     return (
         <>
-            <Link className="home-add-link" to="/add">
-                <button className="home-add-button">Add Readings</button>
-            </Link>
 
-            <Link className="home-add-link" to="/login">
-                <button className="home-add-button">login</button>
-            </Link>
 
-            <Link className="home-add-link" to="/signup">
-                <button className="home-add-button">signup</button>
-            </Link>
+            {currUser ? (
 
-            {/* <Logout /> */}
+                <>
+                    <Link className="home-add-link" to="/add">
+                        <button className="home-add-button">Add Readings</button>
+                    </Link>
+
+                    <Logout setCurrUser={setCurrUser} />
+                </>
+
+            ) : (
+                <>
+                    <Link className="home-add-link" to="/login">
+                        <button className="home-add-button">login</button>
+                    </Link>
+
+                    <Link className="home-add-link" to="/signup">
+                        <button className="home-add-button">signup</button>
+                    </Link>
+                </>
+            )}
+
 
             <div className="App home-page">
                 <h1>Blood Glucose Readings</h1>

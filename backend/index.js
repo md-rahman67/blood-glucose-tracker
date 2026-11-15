@@ -168,7 +168,10 @@ app.post("/signup", async (req, res) => {
 })
 
 app.post("/login", passport.authenticate("local"), (req, res) => {
-  res.json({ message: "Login Successful" });
+  res.json({
+    message: "Login Successful",
+    user: req.user
+  });
 })
 
 app.post("/logout", (req, res) => {
