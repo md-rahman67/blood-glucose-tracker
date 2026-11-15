@@ -161,9 +161,8 @@ app.post("/signup", async (req, res) => {
         return res.status(500).json({ message: err.message });
       }
 
-      return res.status(201).json({
-        message: "Signup successful",
-        user: req.user
+      res.status(201).json({
+        message: "Signup successful"
       });
     })
 
