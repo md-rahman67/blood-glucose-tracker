@@ -11,7 +11,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home data={data} setData={setData} />} />
       <Route path="/add" element={<AddForm setData={setData} />} />
-      <Route path="/view" element={<ViewButton />} />
+      <Route path="/view" element={<ViewButton setData={setData} />} />
       <Route path="/edit" element={<EditButton />} />
     </Routes>
   );

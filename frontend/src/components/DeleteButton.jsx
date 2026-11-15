@@ -16,8 +16,8 @@ export default function DeleteButton({ readingId, setData }) {
 
             if (response.ok) {
                 setData((prevData) => prevData.filter((reading) => reading.id !== readingId));
+                navigate("/");
             }
-            navigate("/");
         } catch (error) {
             console.error('Error deleting reading:', error);
         }

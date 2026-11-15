@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import DeleteButton from '../components/DeleteButton';
+import { useEffect } from 'react';
+// import DeleteButton from '../components/DeleteButton';
 import { Link } from 'react-router-dom';
 
 import '@fontsource/roboto/300.css';
@@ -46,7 +46,7 @@ export default function Home({ data, setData }) {
 
                                 &nbsp;&nbsp;
 
-                                <DeleteButton readingId={reading._id} setData={setData} />
+                                {/* <DeleteButton readingId={reading._id} setData={setData} /> */}
 
                                 &nbsp;&nbsp;
 

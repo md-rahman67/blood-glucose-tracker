@@ -5,8 +5,9 @@ import '@fontsource/roboto/700.css';
 
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import DeleteButton from '../components/DeleteButton';
 
-export default function ViewButton() {
+export default function ViewButton({ setData }) {
 
     const [view, setView] = useState({});
     const location = useLocation();
@@ -42,6 +43,7 @@ export default function ViewButton() {
                         <p>Date: {view.date}</p>
                         <p>Slot: {view.slot}</p>
                         <p>Value: {view.value} mg/dL</p>
+                        <DeleteButton readingId={readingId} setData={setData} />
                     </>
                 ) : (
                     <p>Expand Details</p>
