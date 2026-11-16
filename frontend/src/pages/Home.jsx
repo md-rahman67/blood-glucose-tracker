@@ -11,7 +11,7 @@ import Logout from '../components/Logout';
 
 
 
-export default function Home({ data, setData, currUser, setCurrUser }) {
+export default function Home({ data, setData, currUser, setCurrUser, setError }) {
 
     useEffect(() => {
         const fetchData = async () => {
@@ -38,7 +38,7 @@ export default function Home({ data, setData, currUser, setCurrUser }) {
                             <button className="home-add-button">Add Readings</button>
                         </Link>
 
-                        <Logout setCurrUser={setCurrUser} setData={setData} />
+                        <Logout setCurrUser={setCurrUser} setData={setData} setError={setError} />
                     </>
                 ) : (
                     <>

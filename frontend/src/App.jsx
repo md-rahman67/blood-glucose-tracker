@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import { useEffect } from 'react';
 import Success from './components/Success';
+import Err from './components/Err';
 
 function App() {
 
@@ -35,7 +36,18 @@ function App() {
   }, []);
 
 
-  //* remove succes alert after few sec and reset success state
+  //* remove SUCCESS alert after few sec and reset success state
+  useEffect(() => {
+    if (!error) return;
+
+    const timer = setTimeout(() => {
+      setError('');
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [error]);
+
+  //* remove ERROR alert after few sec and reset success state
   useEffect(() => {
     if (!success) return;
 
@@ -50,6 +62,7 @@ function App() {
   return (
     <>
       <Success success={success} />
+      <Err error={error} />
 
       <Routes>
         <Route path="/"
@@ -58,6 +71,7 @@ function App() {
             setData={setData}
             currUser={currUser}
             setCurrUser={setCurrUser}
+            setError={setError}
           />} />
 
         <Route path="/add"
