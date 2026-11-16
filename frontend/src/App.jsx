@@ -74,7 +74,8 @@ function App() {
         />
 
         <Route path="/edit"
-          element={<EditButton />}
+          element={<EditButton
+            setSuccess={setSuccess} />}
         />
 
         <Route path="/signup"

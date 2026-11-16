@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import './Edit.css';
 
-export default function EditReading() {
+export default function EditReading({ setSuccess }) {
     const navigate = useNavigate();
     const location = useLocation();
     const { readingId, data } = location.state;
@@ -54,8 +54,9 @@ export default function EditReading() {
             }
 
             console.log('Updated successfully:', result);
-            alert('Reading updated successfully!');
+            // alert('Reading updated successfully!');
             navigate("/");
+            setSuccess(result.message);
 
         } catch (error) {
             console.error('Error deleting reading:', error);
