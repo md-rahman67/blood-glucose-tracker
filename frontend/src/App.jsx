@@ -8,9 +8,13 @@ import './App.css';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import { useEffect } from 'react';
+import Success from './components/Success';
 
 function App() {
-  // const [error, setError] = useState('');
+
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
   const [data, setData] = useState({});
   const [currUser, setCurrUser] = useState(null);
 
@@ -21,49 +25,72 @@ function App() {
         const jsonData = await response.json();
 
         setCurrUser(jsonData.user);
-        console.log(jsonData.user);
+        // console.log(jsonData.user);
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     }
 
     fetchUser();
   }, []);
+
+
+  useEffect(() => {
+    if (!success) return;
+
+    const timer = setTimeout(() => {
+      setSuccess('');
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [success]);
+
+
   return (
-    <Routes>
-      <Route path="/"
-        element={<Home
-          data={data}
-          setData={setData}
-          currUser={currUser}
-          setCurrUser={setCurrUser}
-        />} />
+    <>
+      <Success success={success} />
 
-      <Route path="/add"
-        element={<AddForm
-          data={data}
-          setData={setData} />}
-      />
+      <Routes>
+        <Route path="/"
+          element={<Home
+            data={data}
+            setData={setData}
+            currUser={currUser}
+            setCurrUser={setCurrUser}
+          />} />
 
-      <Route path="/view"
-        element={<ViewButton
-          setData={setData} />}
-      />
+        <Route path="/add"
+          element={<AddForm
+            data={data}
+            setData={setData}
+          />}
+        />
 
-      <Route path="/edit"
-        element={<EditButton />}
-      />
+        <Route path="/view"
+          element={<ViewButton
+            setData={setData}
+          />}
+        />
 
-      <Route path="/signup"
-        element={<Signup
-          setCurrUser={setCurrUser} />}
-      />
+        <Route path="/edit"
+          element={<EditButton />}
+        />
 
-      <Route path="/login"
-        element={<Login
-          setCurrUser={setCurrUser} />}
-      />
-    </Routes>
+        <Route path="/signup"
+          element={<Signup
+            setCurrUser={setCurrUser}
+            setSuccess={setSuccess}
+          />}
+        />
+
+        <Route path="/login"
+          element={<Login
+            setCurrUser={setCurrUser}
+            setSuccess={setSuccess}
+          />}
+        />
+      </Routes>
+    </>
   );
 }
 
