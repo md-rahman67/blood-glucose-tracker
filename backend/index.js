@@ -40,6 +40,13 @@ passport.deserializeUser(User.deserializeUser()); //* session finished / delete 
 
 //* -API ENDPOINTS-----------------------------------------------------------------------------
 
+const allowedSlots = [
+  "Morning",
+  "After breakfast",
+  "After lunch",
+  "After dinner"
+];
+
 //* display all readings
 app.get("/readings", async (req, res) => {
 
