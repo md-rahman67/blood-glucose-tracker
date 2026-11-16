@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 import DeleteButton from '../components/DeleteButton';
 import './ViewButton.css';
 
-export default function ViewButton({ setData }) {
+export default function ViewButton({ setData, setError }) {
 
     const [view, setView] = useState({});
     const location = useLocation();
@@ -47,7 +47,7 @@ export default function ViewButton({ setData }) {
                             <p><span>Glucose</span><span>{view.value} mg/dL</span></p>
                         </div>
                         <div className="reading-detail-actions">
-                            <DeleteButton readingId={readingId} setData={setData} />
+                            <DeleteButton readingId={readingId} setData={setData} setError={setError} />
                         </div>
                     </>
                 ) : (

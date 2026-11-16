@@ -85,6 +85,7 @@ function App() {
         <Route path="/view"
           element={<ViewButton
             setData={setData}
+            setError={setError}
           />}
         />
 
