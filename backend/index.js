@@ -81,12 +81,12 @@ app.post("/readings", async (req, res) => {
     }
 
     //selected start date and end date
-    const startDate = new Date(`${date}T00:00:00:000Z`);
+    const startDate = new Date(`${date}T00:00:00.000Z`);
     const endDate = new Date(startDate);
     endDate.setUTCDate(endDate.getUTCDate() + 1);
 
     //checking is date valid? or not
-    if (NaN(startDate.getTime())) {
+    if (isNaN(startDate.getTime())) {
       return res.status(400).json({ message: "Invalid date" });
     }
 

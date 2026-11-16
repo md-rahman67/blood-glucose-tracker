@@ -23,7 +23,7 @@ const readingSchema = new mongoose.Schema({
         min: 40,
         max: 600,
         validate: {
-            validator: Number.isInteger,
+            validator: (value) => Number.isInteger(value),
             message: 'Value must be a whole number'
         }
     },
