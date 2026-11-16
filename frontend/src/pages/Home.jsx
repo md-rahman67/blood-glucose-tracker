@@ -61,7 +61,7 @@ export default function Home({ data, setData, currUser, setCurrUser, setError })
             <div className="App home-page">
                 <h1>Blood Glucose Readings</h1>
 
-                <ul className="reading-list">
+                <div className="reading-list">
                     {data.length > 0 ? (
                         data.map((reading) => (
                             <li className="reading-row" key={reading._id}>
@@ -74,16 +74,6 @@ export default function Home({ data, setData, currUser, setCurrUser, setError })
                                 <span className="reading-field">
                                     <span className="reading-label">Date</span>
                                     <span>{reading.date.split("T")[0]}</span>
-                                </span>
-
-                                <span className="reading-field">
-                                    <span className="reading-label">Time slot</span>
-                                    <span>{reading.slot}</span>
-                                </span>
-
-                                <span className="reading-field">
-                                    <span className="reading-label">Glucose</span>
-                                    <span>{reading.value} mg/dL</span>
                                 </span>
 
                                 <span className="reading-actions">
@@ -102,7 +92,7 @@ export default function Home({ data, setData, currUser, setCurrUser, setError })
                     ) : (
                         <li>Loading...</li>
                     )}
-                </ul>
+                </div>
             </div>
         </>
     )

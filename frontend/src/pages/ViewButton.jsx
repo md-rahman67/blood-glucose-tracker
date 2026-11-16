@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 import DeleteButton from '../components/DeleteButton';
 import './ViewButton.css';
 
-export default function ViewButton({ setData, setError }) {
+export default function ViewButton({ setData, setError, data }) {
 
     const [view, setView] = useState({});
     const location = useLocation();

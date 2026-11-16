@@ -1,4 +1,3 @@
-
 import {
     Box,
     Paper,
@@ -34,45 +33,51 @@ export default function DailyReports() {
     }, []);
 
     if (!report) {
-        return <Typography sx={{ textAlign: 'center', mt: 5 }} mt={5}>Loading report...</Typography>;
+        return <Typography sx={{ textAlign: 'center', mt: 5 }}>Loading report...</Typography>;
     }
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 5 }}>
-            <Paper elevation={3} sx={{ p: 3, width: 450 }}>
+            <Paper elevation={3} sx={{ p: 4, width: 450 }}>
 
-                <Typography variant="h5" mb={3}>
+                <Typography variant="h4" fontWeight="bold" mb={4}>
                     Daily Report
                 </Typography>
 
-                <Typography mb={2}>
+                <Typography fontWeight="bold" mb={3}>
                     Date: {date}
                 </Typography>
 
-                <Divider sx={{ mb: 2 }} />
+                <Divider sx={{ mb: 3 }} />
 
-                <Typography variant="h6" mb={2}>
+                <Typography variant="h6" fontWeight="bold" mb={3}>
                     Report Summary
                 </Typography>
 
                 {report.count === 0 ? (
-                    <Typography mb={2}>No readings found for this date.</Typography>
+                    <Typography mb={3}>No readings found for this date.</Typography>
                 ) : (
                     <>
-                        <Typography mb={1}>Maximum: {report.max} mg/dL</Typography>
-                        <Typography mb={1}>Minimum: {report.min} mg/dL</Typography>
-                        <Typography mb={1}>Average: {report.average} mg/dL</Typography>
-                        <Typography mb={2}>Total Readings: {report.count}</Typography>
+                        <Typography fontWeight="bold" mb={2}>Maximum: <Typography component="span">{report.max} mg/dL</Typography></Typography>
 
-                        <Divider sx={{ mb: 2 }} />
+                        <Typography fontWeight="bold" mb={2}>Minimum: <Typography component="span">{report.min} mg/dL</Typography></Typography>
 
-                        <Typography variant="h6" mb={2}>
+                        <Typography fontWeight="bold" mb={2}>Average: <Typography component="span">{report.average} mg/dL</Typography></Typography>
+
+                        <Typography fontWeight="bold" mb={3}>Total Readings: <Typography component="span">{report.count}</Typography></Typography>
+
+                        <Divider sx={{ mb: 3 }} />
+
+                        <Typography variant="h6" fontWeight="bold" mb={3}>
                             Reading Details
                         </Typography>
 
                         {report.readings.map((reading) => (
-                            <Typography key={reading._id} mb={1}>
-                                {reading.slot} - {reading.value} mg/dL
+                            <Typography key={reading._id} mb={2}>
+                                <Typography component="span" fontWeight="bold">
+                                    {reading.slot}:
+                                </Typography>
+                                {' '}{reading.value} mg/dL
                             </Typography>
                         ))}
                     </>
