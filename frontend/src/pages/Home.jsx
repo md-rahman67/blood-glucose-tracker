@@ -38,7 +38,7 @@ export default function Home({ data, setData, currUser, setCurrUser }) {
                             <button className="home-add-button">Add Readings</button>
                         </Link>
 
-                        <Logout setCurrUser={setCurrUser} />
+                        <Logout setCurrUser={setCurrUser} setData={setData} />
                     </>
                 ) : (
                     <>

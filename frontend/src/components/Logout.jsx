@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import './Logout.css';
 
-export default function Logout({ setCurrUser }) {
+export default function Logout({ setCurrUser, setData }) {
     const navigate = useNavigate();
 
     const handleLogout = async () => {
@@ -11,10 +11,11 @@ export default function Logout({ setCurrUser }) {
             });
 
             const result = await response.json();
-
+            console.log(result);
             if (response.ok) {
                 alert("User Logged out");
                 setCurrUser(null);
+                setData({});
                 navigate("/");
             }
         } catch (error) {
