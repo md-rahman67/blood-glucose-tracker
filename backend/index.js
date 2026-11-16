@@ -90,6 +90,16 @@ app.post("/readings", async (req, res) => {
       return res.status(400).json({ message: "Invalid date" });
     }
 
+    // checking whether selected date is today
+    const today = new Date();
+    const todayDate = today.toISOString().slice(0, 10);
+
+    if (date !== todayDate) {
+      return res.status(400).json({
+        message: "You can only add readings for today"
+      });
+    }
+
     //fetch users existings readings of the dat
     const existingReadings = await Reading.find({
       recordedBy: req.user._id,

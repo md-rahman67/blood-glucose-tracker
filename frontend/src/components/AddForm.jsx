@@ -20,6 +20,8 @@ const slots = [
     'After dinner'
 ];
 
+const today = new Date().toLocaleDateString('en-CA');
+
 export default function AddForm({ data, setData, setSuccess }) {
     const navigate = useNavigate();
 
@@ -150,6 +152,10 @@ export default function AddForm({ data, setData, setSuccess }) {
                         slotProps={{
                             inputLabel: {
                                 shrink: true
+                            },
+                            htmlInput: {
+                                min: today,
+                                max: today
                             }
                         }}
                         required
