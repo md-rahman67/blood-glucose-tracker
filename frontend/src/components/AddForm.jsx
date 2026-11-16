@@ -20,7 +20,9 @@ const slots = [
     'After dinner'
 ];
 
-const today = new Date().toLocaleDateString('en-CA');
+const today = new Date().toLocaleDateString('en-CA', {
+    timeZone: 'Asia/Kolkata'
+});
 
 export default function AddForm({ data, setData, setSuccess }) {
     const navigate = useNavigate();

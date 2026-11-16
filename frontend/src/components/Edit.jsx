@@ -10,7 +10,9 @@ import {
 } from '@mui/material';
 import './Edit.css';
 
-const today = new Date().toLocaleDateString('en-CA');
+const today = new Date().toLocaleDateString('en-CA', {
+    timeZone: 'Asia/Kolkata'
+});
 
 const slots = [
     'Morning',

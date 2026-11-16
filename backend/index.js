@@ -91,8 +91,12 @@ app.post("/readings", async (req, res) => {
     }
 
     // checking whether selected date is today
-    const today = new Date();
-    const todayDate = today.toISOString().slice(0, 10);
+    const todayDate = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Kolkata",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).format(new Date());
 
     if (date !== todayDate) {
       return res.status(400).json({
@@ -194,8 +198,12 @@ app.put("/readings/:id", async (req, res) => {
     }
 
     // checking whether selected date is today
-    const today = new Date();
-    const todayDate = today.toISOString().slice(0, 10);
+    const todayDate = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Kolkata",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).format(new Date());
 
     if (date !== todayDate) {
       return res.status(400).json({
@@ -343,7 +351,7 @@ app.get("/reports/daily", async (req, res) => {
 
     const values = readings.map((reading) => reading.value);
 
-    const min = Math.mix(...values);
+    const min = Math.min(...values);
     const max = Math.max(...values);
 
     const average = Number(

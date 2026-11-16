@@ -3,17 +3,39 @@ import {
     Box,
     Paper,
     Typography,
-    TextField,
-    Button,
     Divider
 } from '@mui/material';
 
-const today = new Date().toLocaleDateString('en-CA');
+import { useEffect, useState } from 'react';
 
-import { useState } from 'react';
+const date = new Date().toLocaleDateString('en-CA', {
+    timeZone: 'Asia/Kolkata'
+});
 
 export default function DailyReports() {
-    const [date, setDate] = useState('');
+
+    const [report, setReport] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`/api/reports/daily?date=${date}`);
+                const jsonData = await response.json();
+
+                setReport(jsonData);
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+
+    }, []);
+
+    if (!report) {
+        return <Typography sx={{ textAlign: 'center', mt: 5 }} mt={5}>Loading report...</Typography>;
+    }
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 5 }}>
@@ -23,6 +45,9 @@ export default function DailyReports() {
                     Daily Report
                 </Typography>
 
+                <Typography mb={2}>
+                    Date: {date}
+                </Typography>
 
                 <Divider sx={{ mb: 2 }} />
 
@@ -30,21 +55,28 @@ export default function DailyReports() {
                     Report Summary
                 </Typography>
 
-                <Typography mb={1}>Maximum: 160 mg/dL</Typography>
-                <Typography mb={1}>Minimum: 100 mg/dL</Typography>
-                <Typography mb={1}>Average: 130.0 mg/dL</Typography>
-                <Typography mb={2}>Total Readings: 4</Typography>
+                {report.count === 0 ? (
+                    <Typography mb={2}>No readings found for this date.</Typography>
+                ) : (
+                    <>
+                        <Typography mb={1}>Maximum: {report.max} mg/dL</Typography>
+                        <Typography mb={1}>Minimum: {report.min} mg/dL</Typography>
+                        <Typography mb={1}>Average: {report.average} mg/dL</Typography>
+                        <Typography mb={2}>Total Readings: {report.count}</Typography>
 
-                <Divider sx={{ mb: 2 }} />
+                        <Divider sx={{ mb: 2 }} />
 
-                <Typography variant="h6" mb={2}>
-                    Reading Details
-                </Typography>
+                        <Typography variant="h6" mb={2}>
+                            Reading Details
+                        </Typography>
 
-                <Typography mb={1}>Morning - 100 mg/dL</Typography>
-                <Typography mb={1}>After breakfast - 140 mg/dL</Typography>
-                <Typography mb={1}>After lunch - 120 mg/dL</Typography>
-                <Typography>After dinner - 160 mg/dL</Typography>
+                        {report.readings.map((reading) => (
+                            <Typography key={reading._id} mb={1}>
+                                {reading.slot} - {reading.value} mg/dL
+                            </Typography>
+                        ))}
+                    </>
+                )}
 
             </Paper>
         </Box>
