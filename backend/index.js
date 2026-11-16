@@ -310,6 +310,62 @@ app.get("/curr-user", (req, res) => {
   });
 })
 
+//*------------ REPORTS --------------------------------------
+
+app.get("/reports/daily", async (req, res) => {
+  try {
+
+    if (!req.user) {
+      return res.status(401).json({ message: "please login first" });
+    }
+
+    const { date } = req.query;
+
+    // Create date range
+    const startDate = new Date(`${date}T00:00:00.000Z`);
+    const endDate = new Date(startDate);
+    endDate.setUTCDate(endDate.getUTCDate() + 1);
+
+    // Fetch selected date readings of logged-in user
+    const readings = await Reading.find({
+      recordedBy: req.user._id,
+      date: {
+        $gte: startDate,
+        $lt: endDate
+      }
+
+
+    });
+
+    if (readings.length === 0) {
+      return res.status(400).json({ message: "reading does not exist" });
+    }
+
+    const values = readings.map((reading) => reading.value);
+
+    const min = Math.mix(...values);
+    const max = Math.max(...values);
+
+    const average = Number(
+      (values.reduce((sum, value) => sum + value) / values.length).toFixed(1)
+    );
+
+    res.status(200).json({
+      count: readings.length,
+      max,
+      min,
+      average,
+      readings,
+    });
+
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
+})
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });     

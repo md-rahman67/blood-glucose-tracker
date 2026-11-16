@@ -38,6 +38,10 @@ export default function Home({ data, setData, currUser, setCurrUser, setError })
                             <button className="home-add-button">Add Readings</button>
                         </Link>
 
+                        <Link className="home-add-link" to="/daily-reports">
+                            <button className="home-add-button">Daily reports</button>
+                        </Link>
+
                         <Logout setCurrUser={setCurrUser} setData={setData} setError={setError} />
                     </>
                 ) : (

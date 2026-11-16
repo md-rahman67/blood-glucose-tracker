@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import { useEffect } from 'react';
 import Success from './components/Success';
 import Err from './components/Err';
+import DailyReports from './reports/DailyReports';
 
 function App() {
 
@@ -106,6 +107,10 @@ function App() {
             setCurrUser={setCurrUser}
             setSuccess={setSuccess}
           />}
+        />
+
+        <Route path="/daily-reports"
+          element={<DailyReports />}
         />
       </Routes>
     </>
