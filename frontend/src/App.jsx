@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import { useEffect } from 'react';
 
 function App() {
+  // const [error, setError] = useState('');
   const [data, setData] = useState({});
   const [currUser, setCurrUser] = useState(null);
 
@@ -30,12 +31,38 @@ function App() {
   }, []);
   return (
     <Routes>
-      <Route path="/" element={<Home data={data} setData={setData} currUser={currUser} setCurrUser={setCurrUser} />} />
-      <Route path="/add" element={<AddForm data={data} setData={setData} />} />
-      <Route path="/view" element={<ViewButton setData={setData} />} />
-      <Route path="/edit" element={<EditButton />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login setCurrUser={setCurrUser} />} />
+      <Route path="/"
+        element={<Home
+          data={data}
+          setData={setData}
+          currUser={currUser}
+          setCurrUser={setCurrUser}
+        />} />
+
+      <Route path="/add"
+        element={<AddForm
+          data={data}
+          setData={setData} />}
+      />
+
+      <Route path="/view"
+        element={<ViewButton
+          setData={setData} />}
+      />
+
+      <Route path="/edit"
+        element={<EditButton />}
+      />
+
+      <Route path="/signup"
+        element={<Signup
+          setCurrUser={setCurrUser} />}
+      />
+
+      <Route path="/login"
+        element={<Login
+          setCurrUser={setCurrUser} />}
+      />
     </Routes>
   );
 }

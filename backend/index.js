@@ -58,7 +58,7 @@ app.get("/readings", async (req, res) => {
     recordedBy: req.user._id
   }).populate("recordedBy");
 
-  console.log(readings);
+  // console.log(readings);
   res.json(readings);
 });
 
@@ -208,31 +208,31 @@ app.put("/readings/:id", async (req, res) => {
 app.post("/signup", async (req, res) => {
   try {
     let { username, email, password } = req.body;
+
     let newUser = new User({
       username: username,
       email: email
     });
-    let kaboom = await User.register(newUser, password);
-    console.log(kaboom);
 
-    res.status(201).json({
-      message: "Signup successful"
-    });
-
-    req.login(kaboom, (err) => {
+    let registeredUser = await User.register(newUser, password);
+    console.log("rrrrrrrrrrrrr", registeredUser);
+    req.login(registeredUser, (err) => {
       if (err) {
         return res.status(500).json({ message: err.message });
       }
 
       res.status(201).json({
-        message: "Signup successful"
+        message: "Signup successful",
+        user: req.user
       });
-    })
+    });
 
-  } catch (e) {
-    console.log(e);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
-})
+
+});
+
 
 app.post("/login", passport.authenticate("local"), (req, res) => {
   res.json({
