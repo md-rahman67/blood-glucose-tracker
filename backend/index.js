@@ -47,7 +47,7 @@ const allowedSlots = [
   "After dinner"
 ];
 
-//* display all readings
+//* display user's all readings
 app.get("/readings", async (req, res) => {
 
   if (!req.user) {
@@ -62,11 +62,57 @@ app.get("/readings", async (req, res) => {
   res.json(readings);
 });
 
+
 //* Add new readings
 app.post("/readings", async (req, res) => {
   try {
+
+    // user must be login to create readings
+    if (!req.user) {
+      return res.status(401).json({ message: "please login first" });
+    }
+
+    // data from frontend
     const { date, slot, value } = req.body;
 
+    //checking valid slots
+    if (!allowedSlots.includes(slot)) {
+      return res.status(400).json({ message: "Slots does not exist" });
+    }
+
+    //selected start date and end date
+    const startDate = new Date(`${date}T00:00:00:000Z`);
+    const endDate = new Date(startDate);
+    endDate.setUTCDate(endDate.getUTCDate() + 1);
+
+    //checking is date valid? or not
+    if (NaN(startDate.getTime())) {
+      return res.status(400).json({ message: "Invalid date" });
+    }
+
+    //fetch users existings readings of the dat
+    const existingReadings = await Reading.find({
+      recordedBy: req.user._id,
+      date: {
+        $gte: startDate,
+        $lt: endDate
+      }
+    });
+
+    //check users todays slot limits
+    if (existingReadings.length >= 4) {
+      return res.status(400).json({ message: "Daily limit is reached" });
+    }
+
+    // check for duplicateSLots
+    const duplicateSlot = existingReadings.some((reading) => reading.slot === slot);
+
+    if (duplicateSlot) {
+      return res.status(400).json({ message: "you already used this slot of the day" });
+    }
+
+
+    // save new readings
     const newReading = await Reading.create({
       recordedBy: req.user._id,
       date,
@@ -82,6 +128,7 @@ app.post("/readings", async (req, res) => {
     });
   }
 });
+
 
 
 //* Delete readings
