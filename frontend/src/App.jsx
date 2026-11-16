@@ -31,7 +31,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home data={data} setData={setData} currUser={currUser} setCurrUser={setCurrUser} />} />
-      <Route path="/add" element={<AddForm setData={setData} />} />
+      <Route path="/add" element={<AddForm data={data} setData={setData} />} />
       <Route path="/view" element={<ViewButton setData={setData} />} />
       <Route path="/edit" element={<EditButton />} />
       <Route path="/signup" element={<Signup />} />
