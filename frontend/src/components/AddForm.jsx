@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,9 +10,17 @@ import {
     MenuItem,
     Paper
 } from '@mui/material';
+
 import './AddForm.css';
 
-export default function AddForm({ setData }) {
+const slots = [
+    'Morning',
+    'After breakfast',
+    'After lunch',
+    'After dinner'
+];
+
+export default function AddForm({ data, setData }) {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -20,16 +29,44 @@ export default function AddForm({ setData }) {
         value: ''
     });
 
+
+    // Selected date ki readings
+    const selectedDateReadings = data.filter(
+        (reading) =>
+            new Date(reading.date).toISOString().slice(0, 10) === formData.date
+    );
+
+    // Selected date par already used slots
+    const usedSlots = selectedDateReadings.map(
+        (reading) => reading.slot
+    );
+
+    // Check whether all 4 readings are added
+    const isDayFull = usedSlots.length >= 4;
+
     const handleChange = (e) => {
         const { name, value } = e.target;
+
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
         }));
+
+
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (isDayFull) {
+            console.log('You have already added all 4 readings for this date.');
+            return;
+        }
+
+        if (usedSlots.includes(formData.slot)) {
+            console.log('You have already added a reading for this slot.');
+            return;
+        }
 
         try {
             const response = await fetch('/api/readings', {
@@ -42,18 +79,22 @@ export default function AddForm({ setData }) {
 
             const result = await response.json();
 
+            console.log('Backend response:', result);
+
             if (response.ok) {
+
                 setData((prevData) => [...prevData, result]);
-                alert('Reading addedd successfully!');
+
+                alert('Reading added successfully!');
+
                 setFormData({
                     date: '',
                     slot: '',
                     value: ''
                 });
 
-                navigate("/");
+                navigate('/');
             }
-
 
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -69,9 +110,16 @@ export default function AddForm({ setData }) {
                 mt: 5
             }}
         >
-            <Paper className="reading-form-paper" elevation={3} sx={{ p: 4, width: 400 }}>
-
-                <Typography className="reading-form-title" variant="h5" mb={3}>
+            <Paper
+                className="reading-form-paper"
+                elevation={3}
+                sx={{ p: 4, width: 400 }}
+            >
+                <Typography
+                    className="reading-form-title"
+                    variant="h5"
+                    mb={3}
+                >
                     Add Blood Glucose Reading
                 </Typography>
 
@@ -85,13 +133,19 @@ export default function AddForm({ setData }) {
                         gap: 2
                     }}
                 >
-
                     <TextField
                         label="Date"
                         type="date"
                         name="date"
                         value={formData.date}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                            handleChange(e);
+                            setFormData((prev) => ({
+                                ...prev,
+                                date: e.target.value,
+                                slot: ''
+                            }));
+                        }}
                         slotProps={{
                             inputLabel: {
                                 shrink: true
@@ -107,13 +161,29 @@ export default function AddForm({ setData }) {
                         value={formData.slot}
                         onChange={handleChange}
                         required
+                        disabled={!formData.date || isDayFull}
                     >
                         <MenuItem value="">Select a slot</MenuItem>
-                        <MenuItem value="Morning">Morning</MenuItem>
-                        <MenuItem value="After breakfast">After breakfast</MenuItem>
-                        <MenuItem value="After lunch">After lunch</MenuItem>
-                        <MenuItem value="After dinner">After dinner</MenuItem>
+
+                        {slots.map((slot) => (
+                            <MenuItem
+                                key={slot}
+                                value={slot}
+                                disabled={usedSlots.includes(slot)}
+                            >
+                                {slot}
+                                {usedSlots.includes(slot)
+                                    ? ' (Already Added)'
+                                    : ''}
+                            </MenuItem>
+                        ))}
                     </TextField>
+
+                    {isDayFull && (
+                        <Typography color="error">
+                            All 4 readings for this date have been added.
+                        </Typography>
+                    )}
 
                     <TextField
                         label="Value"
@@ -125,20 +195,22 @@ export default function AddForm({ setData }) {
                         slotProps={{
                             htmlInput: {
                                 min: 40,
-                                max: 600
+                                max: 600,
+                                step: 1
                             }
                         }}
                         required
                     />
 
+
                     <Button
                         type="submit"
                         variant="contained"
                         fullWidth
+                        disabled={!formData.date || !formData.slot || isDayFull}
                     >
                         Save Reading
                     </Button>
-
                 </Box>
             </Paper>
         </Box>
