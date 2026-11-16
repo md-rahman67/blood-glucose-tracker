@@ -120,7 +120,7 @@ app.post("/readings", async (req, res) => {
       value: Number(value)
     });
 
-    res.status(201).json(newReading);
+    res.status(201).json({ message: "Readings added Succesfully", newReading });
 
   } catch (error) {
     res.status(400).json({
@@ -215,7 +215,6 @@ app.post("/signup", async (req, res) => {
     });
 
     let registeredUser = await User.register(newUser, password);
-    console.log("rrrrrrrrrrrrr", registeredUser);
     req.login(registeredUser, (err) => {
       if (err) {
         return res.status(500).json({ message: err.message });

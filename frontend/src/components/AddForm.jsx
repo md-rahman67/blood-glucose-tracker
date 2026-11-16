@@ -20,7 +20,7 @@ const slots = [
     'After dinner'
 ];
 
-export default function AddForm({ data, setData }) {
+export default function AddForm({ data, setData, setSuccess }) {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -83,9 +83,9 @@ export default function AddForm({ data, setData }) {
 
             if (response.ok) {
 
-                setData((prevData) => [...prevData, result]);
+                setData((prevData) => [...prevData, result.newReading]);
 
-                alert('Reading added successfully!');
+                // alert('Reading added successfully!');
 
                 setFormData({
                     date: '',
@@ -94,6 +94,7 @@ export default function AddForm({ data, setData }) {
                 });
 
                 navigate('/');
+                setSuccess(result.message);
             }
 
         } catch (error) {

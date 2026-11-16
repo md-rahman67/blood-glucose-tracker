@@ -64,6 +64,7 @@ function App() {
           element={<AddForm
             data={data}
             setData={setData}
+            setSuccess={setSuccess}
           />}
         />
 
