@@ -42,8 +42,17 @@ passport.deserializeUser(User.deserializeUser()); //* session finished / delete 
 
 //* display all readings
 app.get("/readings", async (req, res) => {
-  const reading = await Reading.find().populate("recordedBy");
-  res.send(reading);
+
+  if (!req.user) {
+    return res.status(401).json({ message: "Please login first" });
+  }
+
+  const readings = await Reading.find({
+    recordedBy: req.user._id
+  }).populate("recordedBy");
+
+  console.log(readings);
+  res.json(readings);
 });
 
 //* Add new readings
