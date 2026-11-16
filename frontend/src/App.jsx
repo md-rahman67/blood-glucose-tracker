@@ -35,6 +35,7 @@ function App() {
   }, []);
 
 
+  //* remove succes alert after few sec and reset success state
   useEffect(() => {
     if (!success) return;
 

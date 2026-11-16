@@ -3,7 +3,7 @@ import { useState } from "react";
 import './Signup.css';
 import { useNavigate } from "react-router-dom";
 
-export default function Signup({ setCurrUser }) {
+export default function Signup({ setCurrUser, setSuccess }) {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -42,6 +42,7 @@ export default function Signup({ setCurrUser }) {
             console.log("result: ", result.user.username);
             setCurrUser(result.user.username);
             navigate("/");
+            setSuccess(result.message);
 
             setFormData({
                 username: '',
