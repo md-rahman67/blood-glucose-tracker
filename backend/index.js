@@ -182,6 +182,49 @@ app.put("/readings/:id", async (req, res) => {
   try {
     const readingsId = req.params.id;
     const { date, slot, value } = req.body;
+
+    //selected start date and end date
+    const startDate = new Date(`${date}T00:00:00.000Z`);
+    const endDate = new Date(startDate);
+    endDate.setUTCDate(endDate.getUTCDate() + 1);
+
+    //checking is date valid? or not
+    if (isNaN(startDate.getTime())) {
+      return res.status(400).json({ message: "Invalid date" });
+    }
+
+    // checking whether selected date is today
+    const today = new Date();
+    const todayDate = today.toISOString().slice(0, 10);
+
+    if (date !== todayDate) {
+      return res.status(400).json({
+        message: "You can only edit readings for today"
+      });
+    }
+
+    //fetch users existings readings of the dat
+    const existingReadings = await Reading.find({
+      recordedBy: req.user._id,
+      date: {
+        $gte: startDate,
+        $lt: endDate
+      }
+    });
+
+    //check users todays slot limits
+    if (existingReadings.length >= 4) {
+      return res.status(400).json({ message: "Daily limit is reached" });
+    }
+
+    // check for duplicateSLots
+    const duplicateSlot = existingReadings.some((reading) => reading.slot === slot);
+
+    if (duplicateSlot) {
+      return res.status(400).json({ message: "you already used this slot of the day" });
+    }
+
+
     const updated = await Reading.findByIdAndUpdate(
       readingsId,
       {

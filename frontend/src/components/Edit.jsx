@@ -10,6 +10,15 @@ import {
 } from '@mui/material';
 import './Edit.css';
 
+const today = new Date().toLocaleDateString('en-CA');
+
+const slots = [
+    'Morning',
+    'After breakfast',
+    'After lunch',
+    'After dinner'
+];
+
 export default function EditReading({ setSuccess }) {
     const navigate = useNavigate();
     const location = useLocation();
@@ -22,6 +31,17 @@ export default function EditReading({ setSuccess }) {
         slot: single.slot,
         value: single.value
     });
+
+    // Selected date ki readings
+    const selectedDateReadings = data.filter(
+        (reading) =>
+            new Date(reading.date).toISOString().slice(0, 10) === formData.date
+    );
+
+    // Selected date par already used slots
+    const usedSlots = selectedDateReadings.map(
+        (reading) => reading.slot
+    );
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -94,6 +114,10 @@ export default function EditReading({ setSuccess }) {
                         slotProps={{
                             inputLabel: {
                                 shrink: true
+                            },
+                            htmlInput: {
+                                min: today,
+                                max: today
                             }
                         }}
                         required
@@ -106,10 +130,18 @@ export default function EditReading({ setSuccess }) {
                         value={formData.slot}
                         onChange={handleChange}
                     >
-                        <MenuItem value="Morning">Morning (Fasting)</MenuItem>
-                        <MenuItem value="After breakfast">After breakfast</MenuItem>
-                        <MenuItem value="After lunch">After lunch</MenuItem>
-                        <MenuItem value="After dinner">After dinner</MenuItem>
+                        {slots.map((slot) => (
+                            <MenuItem
+                                key={slot}
+                                value={slot}
+                                disabled={usedSlots.includes(slot)}
+                            >
+                                {slot}
+                                {usedSlots.includes(slot)
+                                    ? ' (Already Added)'
+                                    : ''}
+                            </MenuItem>
+                        ))}
                     </TextField>
 
                     <TextField
