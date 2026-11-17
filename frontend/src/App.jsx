@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import Success from './components/Success';
 import Err from './components/Err';
 import DailyReports from './reports/DailyReports';
+import MonthToDateReports from './reports/MonthToDate';
 
 function App() {
 
@@ -111,6 +112,10 @@ function App() {
 
         <Route path="/daily-reports"
           element={<DailyReports />}
+        />
+
+        <Route path="/month-to-date-report"
+          element={<MonthToDateReports />}
         />
       </Routes>
     </>

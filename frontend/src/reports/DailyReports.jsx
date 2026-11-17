@@ -33,7 +33,7 @@ export default function DailyReports() {
     }, []);
 
     if (!report) {
-        return <Typography sx={{ textAlign: 'center', mt: 5 }}>Loading report...</Typography>;
+        return <Typography sx={{ textAlign: 'center', mt: 5 }}> Loading report...</Typography>;
     }
 
     return (

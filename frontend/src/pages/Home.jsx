@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-// import DeleteButton from '../components/DeleteButton';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
@@ -39,7 +38,11 @@ export default function Home({ data, setData, currUser, setCurrUser, setError })
                         </Link>
 
                         <Link className="home-add-link" to="/daily-reports">
-                            <button className="home-add-button">Daily reports</button>
+                            <button className="home-add-button">Daily report</button>
+                        </Link>
+
+                        <Link className="home-add-link" to="/month-to-date-report">
+                            <button className="home-add-button">Month-To-Date Report</button>
                         </Link>
 
                         <Logout setCurrUser={setCurrUser} setData={setData} setError={setError} />
@@ -61,7 +64,7 @@ export default function Home({ data, setData, currUser, setCurrUser, setError })
             <div className="App home-page">
                 <h1>Blood Glucose Readings</h1>
 
-                <div className="reading-list">
+                <ul className="reading-list">
                     {data.length > 0 ? (
                         data.map((reading) => (
                             <li className="reading-row" key={reading._id}>
@@ -74,6 +77,16 @@ export default function Home({ data, setData, currUser, setCurrUser, setError })
                                 <span className="reading-field">
                                     <span className="reading-label">Date</span>
                                     <span>{reading.date.split("T")[0]}</span>
+                                </span>
+
+                                <span className="reading-field">
+                                    <span className="reading-label">Time slot</span>
+                                    <span>{reading.slot}</span>
+                                </span>
+
+                                <span className="reading-field">
+                                    <span className="reading-label">Glucose</span>
+                                    <span>{reading.value} mg/dL</span>
                                 </span>
 
                                 <span className="reading-actions">
@@ -92,7 +105,7 @@ export default function Home({ data, setData, currUser, setCurrUser, setError })
                     ) : (
                         <li>Loading...</li>
                     )}
-                </div>
+                </ul>
             </div>
         </>
     )
