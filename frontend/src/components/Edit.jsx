@@ -9,6 +9,7 @@ import {
     Paper
 } from '@mui/material';
 import './Edit.css';
+import BackButton from './BackButton';
 
 const today = new Date().toLocaleDateString('en-CA', {
     timeZone: 'Asia/Kolkata'
@@ -24,14 +25,16 @@ const slots = [
 export default function EditReading({ setSuccess }) {
     const navigate = useNavigate();
     const location = useLocation();
-    const { readingId, data } = location.state;
+    const { readingId, data } = location.state || {};
 
-    const single = data.find((r) => r._id === readingId);
+    const single = Array.isArray(data)
+        ? data.find((r) => r._id === readingId)
+        : null;
 
     const [formData, setFormData] = useState({
-        date: single.date.split('T')[0],
-        slot: single.slot,
-        value: single.value
+        date: single?.date ? single.date.split('T')[0] : '',
+        slot: single?.slot || '',
+        value: single?.value ?? ''
     });
 
     // Selected date ki readings
@@ -85,6 +88,27 @@ export default function EditReading({ setSuccess }) {
         }
     }
 
+    if (!single) {
+        return (
+            <Box
+                className="reading-form-page reading-form-page--edit"
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    mt: 5
+                }}
+            >
+                <Paper className="reading-form-paper" elevation={3} sx={{ p: 4, width: 400 }}>
+                    <BackButton fallbackTo="/" />
+                    <Typography className="reading-form-title" variant="h5" mb={3}>
+                        Edit Blood Glucose Reading
+                    </Typography>
+                    <Typography>Select a reading from Home to edit.</Typography>
+                </Paper>
+            </Box>
+        );
+    }
+
     return (
         <Box
             className="reading-form-page reading-form-page--edit"
@@ -95,6 +119,7 @@ export default function EditReading({ setSuccess }) {
             }}
         >
             <Paper className="reading-form-paper" elevation={3} sx={{ p: 4, width: 400 }}>
+                <BackButton fallbackTo="/" />
 
                 <Typography className="reading-form-title" variant="h5" mb={3}>
                     Edit Blood Glucose Reading

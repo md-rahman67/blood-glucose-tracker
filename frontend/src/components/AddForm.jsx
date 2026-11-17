@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 
 import './AddForm.css';
+import BackButton from './BackButton';
 
 const slots = [
     'Morning',
@@ -35,7 +36,7 @@ export default function AddForm({ data, setData, setSuccess }) {
 
 
     // Selected date ki readings
-    const selectedDateReadings = data.filter(
+    const selectedDateReadings = (Array.isArray(data) ? data : []).filter(
         (reading) =>
             new Date(reading.date).toISOString().slice(0, 10) === formData.date
     );
@@ -120,6 +121,7 @@ export default function AddForm({ data, setData, setSuccess }) {
                 elevation={3}
                 sx={{ p: 4, width: 400 }}
             >
+                <BackButton fallbackTo="/" />
                 <Typography
                     className="reading-form-title"
                     variant="h5"

@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 
 import { useEffect, useState } from 'react';
+import BackButton from '../components/BackButton';
 
 const date = new Date().toLocaleDateString('en-CA', {
     timeZone: 'Asia/Kolkata'
@@ -33,12 +34,18 @@ export default function DailyReports() {
     }, []);
 
     if (!report) {
-        return <Typography sx={{ textAlign: 'center', mt: 5 }}> Loading report...</Typography>;
+        return (
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 5 }}>
+                <BackButton fallbackTo="/" />
+                <Typography sx={{ textAlign: 'center' }}> Loading report...</Typography>
+            </Box>
+        );
     }
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 5 }}>
             <Paper elevation={3} sx={{ p: 4, width: 450 }}>
+                <BackButton fallbackTo="/" />
 
                 <Typography variant="h4" fontWeight="bold" mb={4}>
                     Daily Report

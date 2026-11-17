@@ -5,6 +5,7 @@ import {
     Typography,
     Divider
 } from '@mui/material';
+import BackButton from '../components/BackButton';
 
 const date = new Date().toLocaleDateString('en-CA', {
     timeZone: 'Asia/Kolkata'
@@ -32,7 +33,12 @@ export default function MonthToDateReports() {
     }, []);
 
     if (!report) {
-        return <Typography sx={{ textAlign: 'center', mt: 5 }}> Loading report...</Typography>;
+        return (
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 5 }}>
+                <BackButton fallbackTo="/" />
+                <Typography sx={{ textAlign: 'center' }}> Loading report...</Typography>
+            </Box>
+        );
     }
 
     return (
@@ -44,6 +50,7 @@ export default function MonthToDateReports() {
         }}>
 
             <Paper elevation={3} sx={{ p: 4, width: 450 }}>
+                <BackButton fallbackTo="/" />
 
                 <Typography variant="h4" fontWeight="bold" mb={4}>
                     Month-to-Date Report

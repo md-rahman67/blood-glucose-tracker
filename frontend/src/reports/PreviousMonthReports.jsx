@@ -5,6 +5,7 @@ import {
     Typography,
     Divider
 } from '@mui/material';
+import BackButton from '../components/BackButton';
 
 export default function PreviousMonthReports() {
 
@@ -34,11 +35,21 @@ export default function PreviousMonthReports() {
     }, []);
 
     if (error) {
-        return <Typography sx={{ textAlign: 'center', mt: 5 }}>{error}</Typography>;
+        return (
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 5 }}>
+                <BackButton fallbackTo="/" />
+                <Typography sx={{ textAlign: 'center' }}>{error}</Typography>
+            </Box>
+        );
     }
 
     if (!report) {
-        return <Typography sx={{ textAlign: 'center', mt: 5 }}> Loading report...</Typography>;
+        return (
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 5 }}>
+                <BackButton fallbackTo="/" />
+                <Typography sx={{ textAlign: 'center' }}> Loading report...</Typography>
+            </Box>
+        );
     }
 
     return (
@@ -50,6 +61,7 @@ export default function PreviousMonthReports() {
         }}>
 
             <Paper elevation={3} sx={{ p: 4, width: 450 }}>
+                <BackButton fallbackTo="/" />
 
                 <Typography variant="h4" fontWeight="bold" mb={4}>
                     Previous Whole Month Report

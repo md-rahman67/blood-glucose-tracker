@@ -2,6 +2,7 @@ import { Box, TextField, Button, Typography, Paper } from "@mui/material";
 import { useState } from "react";
 import './Signup.css';
 import { useNavigate } from "react-router-dom";
+import BackButton from "../components/BackButton";
 
 export default function Signup({ setCurrUser, setSuccess }) {
     const navigate = useNavigate();
@@ -66,6 +67,7 @@ export default function Signup({ setCurrUser, setSuccess }) {
             }}
         >
             <Paper className="auth-paper" sx={{ p: 4, width: 400 }}>
+                <BackButton fallbackTo="/" />
                 <Typography className="auth-title" variant="h5" mb={3} sx={{ textAlign: "center" }}>
                     Sign Up
                 </Typography>

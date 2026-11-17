@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Login.css';
 import Success from "../components/Success";
+import BackButton from "../components/BackButton";
 
 export default function Login({ setCurrUser, setSuccess, success }) {
     const navigate = useNavigate();
@@ -59,6 +60,7 @@ export default function Login({ setCurrUser, setSuccess, success }) {
                 }}
             >
                 <Paper className="auth-paper" sx={{ p: 4, width: 400 }}>
+                    <BackButton fallbackTo="/" />
                     <Typography
                         className="auth-title"
                         variant="h5"

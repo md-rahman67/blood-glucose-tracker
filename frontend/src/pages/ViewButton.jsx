@@ -6,6 +6,7 @@ import '@fontsource/roboto/700.css';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import DeleteButton from '../components/DeleteButton';
+import BackButton from '../components/BackButton';
 import './ViewButton.css';
 
 export default function ViewButton({ setData, setError, data }) {
@@ -13,7 +14,7 @@ export default function ViewButton({ setData, setError, data }) {
     const [view, setView] = useState({});
     const location = useLocation();
 
-    const { readingId } = location.state;
+    const { readingId } = location.state || {};
 
     const handleView = async () => {
         try {
@@ -30,8 +31,19 @@ export default function ViewButton({ setData, setError, data }) {
         }
     };
 
+    if (!readingId) {
+        return (
+            <div className="reading-detail-page">
+                <BackButton fallbackTo="/" />
+                <h1>View Details</h1>
+                <p>Select a reading from Home to view its details.</p>
+            </div>
+        );
+    }
+
     return (
         <div className="reading-detail-page">
+            <BackButton fallbackTo="/" />
             <h1>View Details</h1>
 
             <button className="detail-expand-button" onClick={handleView}>Expand</button>

@@ -1,0 +1,13 @@
+.back-button {
+    margin-bottom: 20px;
+    padding: 0.55rem 0.95rem;
+    border: 1px solid var(--champagne);
+    color: var(--forest-sage);
+    background: var(--warm-ivory);
+}
+
+.back-button:hover {
+    color: var(--forest-sage);
+    background: var(--mist-green);
+    box-shadow: 0 2px 7px rgb(52 72 59 / 12%);
+}
