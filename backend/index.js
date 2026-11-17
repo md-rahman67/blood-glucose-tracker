@@ -1,5 +1,7 @@
+import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
+import { fileURLToPath } from "node:url";
 import readingsRoutes from "./routes/readings.js";
 import userRoutes from "./routes/user.js";
 import reportsRoutes from "./routes/reports.js";
@@ -7,13 +9,16 @@ import passport from "passport";
 import LocalStrategy from "passport-local";
 import User from "./models/user.model.js";
 import session from "express-session";
+
+dotenv.config({ path: fileURLToPath(new URL("./.env", import.meta.url)) });
+
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 //*DB connection
-main().then(() => console.log("connected")).catch(err => console.log(err));
+main().then(() => console.log("connected")).catch(() => console.error("MongoDB connection failed. Check MONGODB_URI."));
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/sweety');
+  await mongoose.connect(process.env.MONGODB_URI);
 }
 
 app.use(express.json());
@@ -21,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //* -SESSION INFO---------------------------------------------------------
 const sessionOptions = {
-  secret: "secretsdjciv8vnvri",
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {

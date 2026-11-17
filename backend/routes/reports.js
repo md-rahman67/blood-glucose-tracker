@@ -30,8 +30,6 @@ router.get("/reports/daily", async (req, res) => {
 
     if (readings.length === 0) {
       return res.status(200).json({
-        from,
-        to,
         count: 0,
         max: null,
         min: null,
@@ -95,8 +93,8 @@ router.get("/reports/month-to-date", async (req, res) => {
     });
     if (readings.length === 0) {
       return res.status(200).json({
-        from,
-        to,
+        from: startDate,
+        to: endDate,
         count: 0,
         max: null,
         min: null,
