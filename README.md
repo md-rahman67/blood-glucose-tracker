@@ -121,5 +121,6 @@ This creates or reuses the demo account and fills readings for last month's full
 ## 11. Notes
 
 - Sample dates follow the `Asia/Kolkata` calendar.
-- Backend automated tests are not configured yet. The backend `npm test` command is a placeholder. Frontend checks are `npm run lint` and `npm run build` (run from `frontend`).
-- With more time, add automated backend tests and include screenshots of the running app.
+- Users can manage their own blood glucose readings.
+- Reports include Daily, Month-to-Date, and Previous Month summaries.
+- Sample readings are provided through the seed script.
