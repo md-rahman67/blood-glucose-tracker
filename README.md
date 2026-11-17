@@ -96,13 +96,27 @@ This creates or reuses the demo account and fills readings for last month's full
 
 ### Login Page
 
-![Login page](screenshots/login.png)
+![](screenshots/login.png)
+
+### Home Page
+
+![](screenshots/home.png)
+
+### Add Reading
+
+![](screenshots/add-reading.png)
+
+### Daily Report
+
+![](screenshots/daily-reports.png)
+
+### Month-to-Date Report
+
+![](screenshots/mtd-report.png)
 
 ### Previous Month Report
 
-![Previous Month Report](screenshots/previous-month-report.png)
-
-The following screenshot files were not found in the root `screenshots/` folder, so they are not shown here: `home.png`, `add-reading.png`, `daily-report.png`, and `mtd-report.png`.
+![](screenshots/previous-month-report.png)
 
 ## 11. Notes
 
