@@ -432,6 +432,66 @@ app.get("/reports/month-to-date", async (req, res) => {
 
 })
 
+app.get("/reports/previous-month", async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ message: "Please login first" });
+    }
+
+    const currentDate = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Kolkata",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).format(new Date());
+
+    const [year, month] = currentDate.split("-").map(Number);
+    const from = new Date(Date.UTC(year, month - 2, 1));
+    const endExclusive = new Date(Date.UTC(year, month - 1, 1));
+    const to = new Date(endExclusive);
+    to.setUTCDate(to.getUTCDate() - 1);
+
+    const readings = await Reading.find({
+      recordedBy: req.user._id,
+      date: {
+        $gte: from,
+        $lt: endExclusive
+      }
+    });
+
+    if (readings.length === 0) {
+      return res.status(200).json({
+        from,
+        to,
+        count: 0,
+        max: null,
+        min: null,
+        average: null,
+        readings: []
+      });
+    }
+
+    const values = readings.map((reading) => reading.value);
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    const average = Number(
+      (values.reduce((sum, value) => sum + value, 0) / values.length).toFixed(1)
+    );
+
+    res.status(200).json({
+      from,
+      to,
+      count: readings.length,
+      max,
+      min,
+      average,
+      readings
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
-});     
+});

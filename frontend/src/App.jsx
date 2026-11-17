@@ -12,6 +12,7 @@ import Success from './components/Success';
 import Err from './components/Err';
 import DailyReports from './reports/DailyReports';
 import MonthToDateReports from './reports/MonthToDate';
+import PreviousMonthReports from './reports/PreviousMonthReports';
 
 function App() {
 
@@ -116,6 +117,10 @@ function App() {
 
         <Route path="/month-to-date-report"
           element={<MonthToDateReports />}
+        />
+
+        <Route path="/previous-month-report"
+          element={<PreviousMonthReports />}
         />
       </Routes>
     </>

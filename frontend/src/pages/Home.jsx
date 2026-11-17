@@ -45,6 +45,10 @@ export default function Home({ data, setData, currUser, setCurrUser, setError })
                             <button className="home-add-button">Month-To-Date Report</button>
                         </Link>
 
+                        <Link className="home-add-link" to="/previous-month-report">
+                            <button className="home-add-button">Previous Month Report</button>
+                        </Link>
+
                         <Logout setCurrUser={setCurrUser} setData={setData} setError={setError} />
                     </>
                 ) : (
