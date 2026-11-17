@@ -1,1 +1,12 @@
 @import './Login.css';
+
+.auth-form .MuiButton-root.signup-action-button {
+    color: var(--forest-sage);
+    background: var(--mist-green);
+}
+
+.auth-form .MuiButton-root.signup-action-button:hover {
+    color: var(--forest-sage);
+    background: #cbd3bd;
+    box-shadow: 0 2px 7px rgb(52 72 59 / 12%);
+}

@@ -111,6 +111,7 @@ export default function Signup({ setCurrUser, setSuccess }) {
                     />
 
                     <Button
+                        className="signup-action-button"
                         fullWidth
                         variant="contained"
                         type="submit"

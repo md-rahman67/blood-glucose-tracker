@@ -96,6 +96,7 @@ export default function Login({ setCurrUser, setSuccess, success }) {
                         />
 
                         <Button
+                            className="login-action-button"
                             fullWidth
                             variant="contained"
                             type="submit"

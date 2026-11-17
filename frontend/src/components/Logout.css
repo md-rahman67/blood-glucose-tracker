@@ -1,10 +1,12 @@
 .logout-button {
     min-height: 44px;
     padding: 0.7rem 1.2rem;
+    color: var(--pure-white);
+    background: var(--muted-stone);
     box-shadow: none;
 }
 
 .logout-button:hover {
-    background: #293b30;
-    box-shadow: 0 2px 7px rgb(52 72 59 / 12%);
+    background: var(--soft-charcoal);
+    box-shadow: 0 2px 7px rgb(52 56 49 / 14%);
 }

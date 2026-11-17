@@ -213,6 +213,7 @@ export default function AddForm({ data, setData, setSuccess }) {
 
 
                     <Button
+                        className="add-reading-button"
                         type="submit"
                         variant="contained"
                         fullWidth

@@ -66,6 +66,17 @@
     box-shadow: 0 2px 7px rgb(52 72 59 / 12%);
 }
 
+.auth-form .MuiButton-root.login-action-button {
+    color: var(--forest-sage);
+    border: 1px solid var(--soft-sage);
+    background: var(--pure-white);
+}
+
+.auth-form .MuiButton-root.login-action-button:hover {
+    background: var(--warm-ivory);
+    box-shadow: 0 2px 7px rgb(52 72 59 / 12%);
+}
+
 @media (max-width: 480px) {
     .auth-page {
         padding: 14px;

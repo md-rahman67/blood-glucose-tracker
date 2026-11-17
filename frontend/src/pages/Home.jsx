@@ -31,22 +31,25 @@ export default function Home({ data, setData, currUser, setCurrUser, setError })
 
 
             <nav className="home-toolbar">
+                <span className="brand-logo">
+                    sw<span className="brand-logo__accent">EE</span>ty
+                </span>
                 {currUser ? (
                     <>
                         <Link className="home-add-link" to="/add">
-                            <button className="home-add-button">Add Readings</button>
+                            <button className="home-add-button home-action-button home-action-button--add">Add Readings</button>
                         </Link>
 
                         <Link className="home-add-link" to="/daily-reports">
-                            <button className="home-add-button">Daily report</button>
+                            <button className="home-add-button home-action-button home-action-button--daily">Daily report</button>
                         </Link>
 
                         <Link className="home-add-link" to="/month-to-date-report">
-                            <button className="home-add-button">Month-To-Date Report</button>
+                            <button className="home-add-button home-action-button home-action-button--month-to-date">Month-To-Date Report</button>
                         </Link>
 
                         <Link className="home-add-link" to="/previous-month-report">
-                            <button className="home-add-button">Previous Month Report</button>
+                            <button className="home-add-button home-action-button home-action-button--previous-month">Previous Month Report</button>
                         </Link>
 
                         <Logout setCurrUser={setCurrUser} setData={setData} setError={setError} />
@@ -54,11 +57,11 @@ export default function Home({ data, setData, currUser, setCurrUser, setError })
                 ) : (
                     <>
                         <Link className="home-add-link" to="/login">
-                            <button className="home-add-button">login</button>
+                            <button className="home-add-button home-action-button home-action-button--login">login</button>
                         </Link>
 
                         <Link className="home-add-link" to="/signup">
-                            <button className="home-add-button">signup</button>
+                            <button className="home-add-button home-action-button home-action-button--signup">signup</button>
                         </Link>
                     </>
                 )}

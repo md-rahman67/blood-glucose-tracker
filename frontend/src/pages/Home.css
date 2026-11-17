@@ -14,9 +14,98 @@
     gap: 10px;
 }
 
+.brand-logo {
+    display: inline-flex;
+    align-items: baseline;
+    margin-right: auto;
+    color: var(--forest-sage);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.55rem, 3vw, 1.9rem);
+    font-weight: 600;
+    letter-spacing: -0.055em;
+    white-space: nowrap;
+}
+
+.brand-logo__accent {
+    color: var(--soft-sage);
+    font-size: 0.88em;
+    letter-spacing: -0.045em;
+}
+
 .home-add-button {
     padding: 0.82rem 1.35rem;
     box-shadow: 0 8px 20px rgb(52 72 59 / 12%);
+}
+
+.home-toolbar .home-action-button {
+    min-height: 44px;
+    padding: 0.68rem 1rem;
+    border: 1px solid transparent;
+    box-shadow: none;
+    transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.home-action-button--add {
+    color: var(--pure-white);
+    background: var(--forest-sage);
+}
+
+.home-action-button--add:hover {
+    background: #293b30;
+    box-shadow: 0 3px 9px rgb(52 72 59 / 16%);
+}
+
+.home-action-button--login {
+    color: var(--forest-sage);
+    border-color: var(--soft-sage) !important;
+    background: var(--pure-white);
+}
+
+.home-action-button--login:hover {
+    color: var(--forest-sage);
+    background: var(--warm-ivory);
+}
+
+.home-action-button--signup {
+    color: var(--forest-sage);
+    background: var(--mist-green);
+}
+
+.home-action-button--signup:hover {
+    color: var(--forest-sage);
+    background: #cbd3bd;
+}
+
+.home-action-button--daily {
+    color: var(--forest-sage);
+    border-color: var(--champagne) !important;
+    background: var(--warm-ivory);
+}
+
+.home-action-button--daily:hover {
+    color: var(--forest-sage);
+    background: #eee9dd;
+}
+
+.home-action-button--month-to-date {
+    color: var(--forest-sage);
+    background: var(--champagne);
+}
+
+.home-action-button--month-to-date:hover {
+    color: var(--forest-sage);
+    background: #b8aa8e;
+}
+
+.home-action-button--previous-month {
+    color: var(--forest-sage);
+    border-color: var(--soft-sage) !important;
+    background: var(--pure-white);
+}
+
+.home-action-button--previous-month:hover {
+    color: var(--forest-sage);
+    background: var(--mist-green);
 }
 
 .home-page {
@@ -105,6 +194,11 @@
 
     .home-toolbar {
         margin-top: 24px;
+    }
+
+    .brand-logo {
+        flex-basis: 100%;
+        margin-bottom: 4px;
     }
 
     .reading-row {

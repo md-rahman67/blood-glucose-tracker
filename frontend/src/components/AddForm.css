@@ -67,6 +67,16 @@
     box-shadow: 0 6px 16px rgb(52 72 59 / 16%);
 }
 
+.reading-form .MuiButton-root.add-reading-button {
+    color: var(--pure-white);
+    background: var(--forest-sage);
+}
+
+.reading-form .MuiButton-root.add-reading-button:hover {
+    background: #293b30;
+    box-shadow: 0 6px 16px rgb(52 72 59 / 16%);
+}
+
 @media (max-width: 480px) {
     .reading-form-page {
         padding-right: 14px;
