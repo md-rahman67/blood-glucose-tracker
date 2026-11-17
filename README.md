@@ -96,27 +96,27 @@ This creates or reuses the demo account and fills readings for last month's full
 
 ### Login Page
 
-![](screenshots/login.png)
+![Login Page](Screenshots/login.png)
 
 ### Home Page
 
-![](screenshots/home.png)
+![Home Page](Screenshots/home.png)
 
 ### Add Reading
 
-![](screenshots/add-reading.png)
+![Add Reading](Screenshots/add-reading.png)
 
 ### Daily Report
 
-![](screenshots/daily-reports.png)
+![Daily Report](Screenshots/daily-reports.png)
 
 ### Month-to-Date Report
 
-![](screenshots/mtd-report.png)
+![Month-to-Date Report](Screenshots/mtd-report.png)
 
 ### Previous Month Report
 
-![](screenshots/previous-month-report.png)
+![Previous Month Report](Screenshots/previous-month-report.png)
 
 ## 11. Notes
 
