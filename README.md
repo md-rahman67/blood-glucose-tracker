@@ -94,14 +94,15 @@ This creates or reuses the demo account and fills readings for last month's full
 
 ## 10. Screenshots
 
-No screenshots are included yet. Browser automation was unavailable when this README was updated. Capture the real app screens and save them in `submission/screenshots/` using these filenames:
+### Login Page
 
-- `login.png` — Login page.
-- `home.png` — Home page with readings.
-- `add-reading.png` — Add Reading page.
-- `daily-report.png` — Daily Report.
-- `mtd-report.png` — Month-to-Date Report.
-- `previous-month-report.png` — Previous Month Report.
+![Login page](screenshots/login.png)
+
+### Previous Month Report
+
+![Previous Month Report](screenshots/previous-month-report.png)
+
+The following screenshot files were not found in the root `screenshots/` folder, so they are not shown here: `home.png`, `add-reading.png`, `daily-report.png`, and `mtd-report.png`.
 
 ## 11. Notes
 
