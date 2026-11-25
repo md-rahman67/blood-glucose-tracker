@@ -29,9 +29,9 @@ function App() {
         const jsonData = await response.json();
 
         setCurrUser(jsonData.user);
-        // console.log(jsonData.user);
+        console.log(jsonData.user);
       } catch (error) {
-        // console.log(error)
+        console.log(error)
       }
     }
 
